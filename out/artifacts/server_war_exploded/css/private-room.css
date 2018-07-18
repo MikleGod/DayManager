@@ -1,0 +1,21 @@
+body{
+    background-image: url("../assets/background28.jpg");
+}
+
+.nav-part{
+    background-image: url("../assets/background28.jpg");
+}
+.pc{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+.h2{
+    margin: 40px 5px;
+    text-align: center;
+}
+.pc-a{
+}
+.none{
+    display: none;
+}

@@ -1,0 +1,213 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema DayManagerDB
+-- -----------------------------------------------------
+-- Приложение представляет пользователю функционал, связанный с управлением времени, то есть позволяет составить план на выбранный день вида:
+-- 21.06.2018 
+-- 1.00 - 7.00: сон
+-- 7.00 - 7.20: утренний туалет
+-- 7.20 - 7.40: завтрак
+-- 7.40 - 9.00: транспорт
+-- 9.00 - 13.30: университет.
+-- 
+-- А также функционал для контроля денежного потока (доходы - расходы):
+-- 21.06.2018
+-- 0,65 - транспорт
+-- 4,4 - еда
+-- 8 - необходимое
+-- 12 - развлечения
+-- 
+-- Пользователь может сам придумывать для себя необходимые элементы плана на день и денежного потока.
+
+-- -----------------------------------------------------
+-- Schema DayManagerDB
+--
+-- Приложение представляет пользователю функционал, связанный с управлением времени, то есть позволяет составить план на выбранный день вида:
+-- 21.06.2018 
+-- 1.00 - 7.00: сон
+-- 7.00 - 7.20: утренний туалет
+-- 7.20 - 7.40: завтрак
+-- 7.40 - 9.00: транспорт
+-- 9.00 - 13.30: университет.
+-- 
+-- А также функционал для контроля денежного потока (доходы - расходы):
+-- 21.06.2018
+-- 0,65 - транспорт
+-- 4,4 - еда
+-- 8 - необходимое
+-- 12 - развлечения
+-- 
+-- Пользователь может сам придумывать для себя необходимые элементы плана на день и денежного потока.
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `DayManagerDB` DEFAULT CHARACTER SET utf8 ;
+USE `DayManagerDB` ;
+
+-- -----------------------------------------------------
+-- Table `DayManagerDB`.`roles`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DayManagerDB`.`roles` (
+  `role_id` INT NOT NULL AUTO_INCREMENT,
+  `role_name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`role_id`),
+  UNIQUE INDEX `role_name_UNIQUE` (`role_name` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DayManagerDB`.`users`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DayManagerDB`.`users` (
+  `usr_id` INT NOT NULL AUTO_INCREMENT,
+  `usr_nickname` VARCHAR(45) NOT NULL,
+  `role_id` INT NOT NULL,
+  PRIMARY KEY (`usr_id`),
+  UNIQUE INDEX `usr_id_UNIQUE` (`usr_id` ASC),
+  INDEX `fk_users_roles1_idx` (`role_id` ASC),
+  CONSTRAINT `fk_users_roles1`
+    FOREIGN KEY (`role_id`)
+    REFERENCES `DayManagerDB`.`roles` (`role_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DayManagerDB`.`user_privates`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DayManagerDB`.`user_privates` (
+  `usr_id` INT NOT NULL,
+  `mail` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  UNIQUE INDEX `usr_mail_UNIQUE` (`mail` ASC),
+  PRIMARY KEY (`usr_id`),
+  CONSTRAINT `fk_user_privates_users`
+    FOREIGN KEY (`usr_id`)
+    REFERENCES `DayManagerDB`.`users` (`usr_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+COMMENT = 'Разделяем таблицу потому что некоторые модули программы будут делать запросы для получения только логина и пароля, либо только ника пользователя';
+
+
+-- -----------------------------------------------------
+-- Table `DayManagerDB`.`time_manage_items`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DayManagerDB`.`time_manage_items` (
+  `tmi_id` INT NOT NULL AUTO_INCREMENT,
+  `item_name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`tmi_id`),
+  UNIQUE INDEX `item_name_UNIQUE` (`item_name` ASC))
+ENGINE = InnoDB;
+
+
+
+-- -----------------------------------------------------
+-- Table `DayManagerDB`.`cash_flow_items`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DayManagerDB`.`cash_flow_items` (
+  `cfi_id` INT NOT NULL AUTO_INCREMENT,
+  `item_name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`cfi_id`),
+  UNIQUE INDEX `item_name_UNIQUE` (`item_name` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DayManagerDB`.`users_has_time_manage_items`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DayManagerDB`.`users_has_time_manage_items` (
+  `usr_id` INT NOT NULL,
+  `tmi_id` INT NOT NULL,
+  PRIMARY KEY (`usr_id`, `tmi_id`),
+  INDEX `fk_users_has_time_manage_items_time_manage_items1_idx` (`tmi_id` ASC),
+  INDEX `fk_users_has_time_manage_items_users1_idx` (`usr_id` ASC),
+  CONSTRAINT `fk_users_has_time_manage_items_users1`
+    FOREIGN KEY (`usr_id`)
+    REFERENCES `DayManagerDB`.`users` (`usr_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_users_has_time_manage_items_time_manage_items1`
+    FOREIGN KEY (`tmi_id`)
+    REFERENCES `DayManagerDB`.`time_manage_items` (`tmi_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DayManagerDB`.`users_has_cash_flow_items`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DayManagerDB`.`users_has_cash_flow_items` (
+  `usr_id` INT NOT NULL,
+  `cfi_id` INT NOT NULL,
+  PRIMARY KEY (`usr_id`, `cfi_id`),
+  INDEX `fk_users_has_cash_flow_items_cash_flow_items1_idx` (`cfi_id` ASC),
+  INDEX `fk_users_has_cash_flow_items_users1_idx` (`usr_id` ASC),
+  CONSTRAINT `fk_users_has_cash_flow_items_users1`
+    FOREIGN KEY (`usr_id`)
+    REFERENCES `DayManagerDB`.`users` (`usr_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_users_has_cash_flow_items_cash_flow_items1`
+    FOREIGN KEY (`cfi_id`)
+    REFERENCES `DayManagerDB`.`cash_flow_items` (`cfi_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DayManagerDB`.`time_manage`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DayManagerDB`.`time_manage` (
+  `usr_id` INT NOT NULL,
+  `date` DATE NOT NULL,
+  `time_begin` VARCHAR(45) NOT NULL,
+  `time_end` VARCHAR(45) NOT NULL,
+  `tmi_id` INT NOT NULL,
+  INDEX `fk_time_manage_users1_idx` (`usr_id` ASC),
+  INDEX `fk_time_manage_time_manage_items1_idx` (`tmi_id` ASC),
+  CONSTRAINT `fk_time_manage_users1`
+    FOREIGN KEY (`usr_id`)
+    REFERENCES `DayManagerDB`.`users` (`usr_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_time_manage_time_manage_items1`
+    FOREIGN KEY (`tmi_id`)
+    REFERENCES `DayManagerDB`.`time_manage_items` (`tmi_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DayManagerDB`.`cash_flow`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DayManagerDB`.`cash_flow` (
+  `usr_id` INT NOT NULL,
+  `date` DATE NOT NULL,
+  `cost` FLOAT NOT NULL,
+  `cfi_id` INT NOT NULL,
+  INDEX `fk_cash_flow_users1_idx` (`usr_id` ASC),
+  INDEX `fk_cash_flow_cash_flow_items1_idx` (`cfi_id` ASC),
+  CONSTRAINT `fk_cash_flow_users1`
+    FOREIGN KEY (`usr_id`)
+    REFERENCES `DayManagerDB`.`users` (`usr_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cash_flow_cash_flow_items1`
+    FOREIGN KEY (`cfi_id`)
+    REFERENCES `DayManagerDB`.`cash_flow_items` (`cfi_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
