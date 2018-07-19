@@ -1,6 +1,4 @@
 
-$(document).ready(function () {
-});
 
 
 //main events
@@ -17,7 +15,6 @@ function onSubmitRegisterForm() {
         $("#inputPassword").val("");
         $("#inputNickname").val("");
         registerUser(mail, nickname, password);
-        $("#myModal").css('display', 'none');
     } else {
         alert("Error");
         return false;
@@ -70,32 +67,9 @@ function registerUser(mail, nickname, password) {
         dataType : "json",                     // тип загружаемых данных
         type: "POST",
         data: "action=" + REGISTRATION_ACTION + "&mail=" + mail +
-             "&password=" + password + "&nickname=" + nickname + JSON_ACTION,
-        success: function () {
-            alert("Success");
-        },
-        complete: function () {
-            alert("HUIHUIHUI");
-        }
+             "&password=" + password + "&nickname=" + nickname + JSON_ACTION
 
     });
-
-    // var xhttp = new XMLHttpRequest();
-    //
-    // xhttp.onreadystatechange = function () {
-    //     if (xhttp.readyState === XMLHttpRequest.DONE && xhttp.status === 200) {
-    //         alert("Success");
-    //     }
-    // };
-    //
-    // xhttp.open('POST', '/controller', true);
-    //
-    // xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=utf-8');
-    //
-    // xhttp.send(
-    //     "action=" + REGISTRATION_ACTION + "&mail=" + mail +
-    //     "&password=" + password + "&nickname=" + nickname + JSON_ACTION
-    // );
 }
 
 function isUserExistsWith(mail) {

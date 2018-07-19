@@ -19,72 +19,108 @@ public class CashFlowServiceImpl implements CashFlowService {
 
     @Override
     public CashFlowItem changeCFItem(User user, CashFlowItem item) throws ServiceException {
-        CashFlowItemsDao itemsDao = DaoFactory.getCashFlowItemsDao();
-        CashFlowItem item1;
         try {
-            item1 = itemsDao.find(item);
-        }catch (NoSuchItemException e){
-            itemsDao.insert(item);
-            item1 = itemsDao.find(item);
+            CashFlowItemsDao itemsDao = DaoFactory.getCashFlowItemsDao();
+            CashFlowItem item1;
+            try {
+                item1 = itemsDao.find(item);
+            } catch (NoSuchItemException e) {
+                itemsDao.insert(item);
+                item1 = itemsDao.find(item);
+            }
+            itemsDao.deleteItem(user, item);
+            itemsDao.addItem(user, item1);
+            return item1;
+
+        } catch (ConnectionPoolException | DBException e) {
+            throw new ServiceException(e);
         }
-        itemsDao.deleteItem(user, item);
-        itemsDao.addItem(user, item1);
-        return item1;
     }
 
     @Override
     public CashFlowItem addCFItem(User user, CashFlowItem item) throws ServiceException {
-        CashFlowItemsDao itemsDao = DaoFactory.getCashFlowItemsDao();
-        CashFlowItem item1;
         try {
-            item1 = itemsDao.find(item);
-        }catch (NoSuchItemException e){
-            itemsDao.insert(item);
-            item1 = itemsDao.find(item);
+
+            CashFlowItemsDao itemsDao = DaoFactory.getCashFlowItemsDao();
+            CashFlowItem item1;
+            try {
+                item1 = itemsDao.find(item);
+            } catch (NoSuchItemException e) {
+                itemsDao.insert(item);
+                item1 = itemsDao.find(item);
+            }
+            itemsDao.addItem(user, item1);
+            return item1;
+
+        } catch (ConnectionPoolException | DBException e) {
+            throw new ServiceException(e);
         }
-        itemsDao.addItem(user, item1);
-        return item1;
     }
 
     @Override
     public void deleteCFItem(User user, CashFlowItem item) throws ServiceException {
-        DaoFactory.getCashFlowItemsDao().deleteItem(user, item);
+        try {
+            DaoFactory.getCashFlowItemsDao().deleteItem(user, item);
+
+        } catch (ConnectionPoolException | DBException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
     public List<CashFlowItem> getCFItems(User user) throws ServiceException {
-        return DaoFactory.getCashFlowItemsDao().findAll(user);
+        try {
+            return DaoFactory.getCashFlowItemsDao().findAll(user);
+        } catch (ConnectionPoolException | DBException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
     public List<CashFlowPlanItem> getCF(User user, Date date) throws ServiceException {
-        return DaoFactory.getCashFlowDao().findAll(date, user);
+        try {
+            return DaoFactory.getCashFlowDao().findAll(date, user);
+        } catch (ConnectionPoolException | DBException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
     public void deleteCF(User user, Date date) throws ServiceException {
-        CashFlowDao dao = DaoFactory.getCashFlowDao();
-        List<CashFlowPlanItem> items = DaoFactory.getCashFlowDao().findAll(date, user);
-        for (CashFlowPlanItem item : items) {
-            dao.delete(item);
+        try {
+            CashFlowDao dao = DaoFactory.getCashFlowDao();
+            List<CashFlowPlanItem> items = DaoFactory.getCashFlowDao().findAll(date, user);
+            for (CashFlowPlanItem item : items) {
+                dao.delete(item);
+            }
+        } catch (ConnectionPoolException | DBException e) {
+            throw new ServiceException(e);
         }
     }
 
     @Override
-    public List<CashFlowPlanItem> changeCF(List<CashFlowPlanItem> plan) throws ServiceException{
-        CashFlowDao dao = DaoFactory.getCashFlowDao();
-        for (CashFlowPlanItem cashFlowPlanItem : plan) {
-            dao.update(cashFlowPlanItem);
+    public List<CashFlowPlanItem> changeCF(List<CashFlowPlanItem> plan) throws ServiceException {
+        try {
+            CashFlowDao dao = DaoFactory.getCashFlowDao();
+            for (CashFlowPlanItem cashFlowPlanItem : plan) {
+                dao.update(cashFlowPlanItem);
+            }
+            return dao.findAll(plan.get(0).getDate(), plan.get(0).getUser());
+        } catch (ConnectionPoolException | DBException e) {
+            throw new ServiceException(e);
         }
-        return dao.findAll(plan.get(0).getDate(), plan.get(0).getUser());
     }
 
     @Override
-    public List<CashFlowPlanItem> addCF(List<CashFlowPlanItem> plan) throws ServiceException{
-        CashFlowDao dao = DaoFactory.getCashFlowDao();
-        for (CashFlowPlanItem cashFlowPlanItem : plan) {
-            dao.insert(cashFlowPlanItem);
+    public List<CashFlowPlanItem> addCF(List<CashFlowPlanItem> plan) throws ServiceException {
+        try {
+            CashFlowDao dao = DaoFactory.getCashFlowDao();
+            for (CashFlowPlanItem cashFlowPlanItem : plan) {
+                dao.insert(cashFlowPlanItem);
+            }
+            return plan;
+        } catch (ConnectionPoolException | DBException e) {
+            throw new ServiceException(e);
         }
-        return plan;
     }
 }

@@ -4,6 +4,7 @@ import by.epam.java_training.mihail_poliansky.final_project.entity.User;
 import by.epam.java_training.mihail_poliansky.final_project.entity.UserPrivates;
 import by.epam.java_training.mihail_poliansky.final_project.dao.connection_pool.ConnectionPoolException;
 import by.epam.java_training.mihail_poliansky.final_project.dao.DBException;
+import by.epam.java_training.mihail_poliansky.final_project.service.exception.ServiceException;
 import by.epam.java_training.mihail_poliansky.final_project.service.exception.UserAlreadyExistsException;
 import by.epam.java_training.mihail_poliansky.final_project.factory.EntityFactory;
 import by.epam.java_training.mihail_poliansky.final_project.service.impl.ServiceFactory;
@@ -20,12 +21,10 @@ public abstract class RegistrationCommand implements ActionCommand{
                     req.getParameter("mail"), req.getParameter("password").hashCode());
             ServiceFactory.getAuthService().registration(user, privates);
             doMandatory(req, resp, user);
-        } catch (ConnectionPoolException e) {
-            doAlternative(req, resp, e);
-        } catch (DBException e) {
-            doAlternative(req, resp, e);
         } catch (UserAlreadyExistsException e) {
             doAlternative(req, resp, e);
+        } catch (ServiceException e) {
+            e.printStackTrace();
         }
     }
 

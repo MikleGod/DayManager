@@ -22,14 +22,18 @@ public class TimeManagerServiceImpl implements TimeManagerService {
         TimeManagerItemsDao itemsDao = DaoFactory.getTimeManagerItemsDao();
         TimeManagerItem item1;
         try {
-            item1 = itemsDao.find(item);
-        }catch (NoSuchItemException e){
-            itemsDao.insert(item);
-            item1 = itemsDao.find(item);
+            try {
+                item1 = itemsDao.find(item);
+            } catch (NoSuchItemException e) {
+                itemsDao.insert(item);
+                item1 = itemsDao.find(item);
+            }
+            itemsDao.deleteItem(user, item);
+            itemsDao.addItem(user, item1);
+            return item1;
+        } catch (ConnectionPoolException | DBException e) {
+            throw new ServiceException(e);
         }
-        itemsDao.deleteItem(user, item);
-        itemsDao.addItem(user, item1);
-        return item1;
     }
 
     @Override
@@ -37,54 +41,89 @@ public class TimeManagerServiceImpl implements TimeManagerService {
         TimeManagerItemsDao itemsDao = DaoFactory.getTimeManagerItemsDao();
         TimeManagerItem item1;
         try {
-            item1 = itemsDao.find(item);
-        }catch (NoSuchItemException e){
-            itemsDao.insert(item);
-            item1 = itemsDao.find(item);
+            try {
+                item1 = itemsDao.find(item);
+            } catch (NoSuchItemException e) {
+                itemsDao.insert(item);
+                item1 = itemsDao.find(item);
+            }
+            itemsDao.addItem(user, item1);
+            return item1;
+
+        } catch (ConnectionPoolException | DBException e) {
+            throw new ServiceException(e);
         }
-        itemsDao.addItem(user, item1);
-        return item1;
     }
 
     @Override
     public void deleteTMItem(User user, TimeManagerItem item) throws ServiceException {
-        DaoFactory.getTimeManagerItemsDao().deleteItem(user, item);
+        try {
+            DaoFactory.getTimeManagerItemsDao().deleteItem(user, item);
+
+        } catch (ConnectionPoolException | DBException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
     public List<TimeManagerItem> getTMItems(User user) throws ServiceException {
-        return DaoFactory.getTimeManagerItemsDao().findAll(user);
+        try {
+            return DaoFactory.getTimeManagerItemsDao().findAll(user);
+
+        } catch (ConnectionPoolException | DBException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
     public List<TimeManagerPlanItem> getPlan(User user, Date date) throws ServiceException {
-        return DaoFactory.getTimeManagerDao().findAll(date, user);
+        try {
+            return DaoFactory.getTimeManagerDao().findAll(date, user);
+
+        } catch (ConnectionPoolException | DBException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
     public void deletePlan(User user, Date date) throws ServiceException {
-        TimeManagerDao dao = DaoFactory.getTimeManagerDao();
-        List<TimeManagerPlanItem> items = dao.findAll(date, user);
-        for (TimeManagerPlanItem item : items) {
-            dao.delete(item);
+        try {
+            TimeManagerDao dao = DaoFactory.getTimeManagerDao();
+            List<TimeManagerPlanItem> items = dao.findAll(date, user);
+            for (TimeManagerPlanItem item : items) {
+                dao.delete(item);
+            }
+
+        } catch (ConnectionPoolException | DBException e) {
+            throw new ServiceException(e);
         }
     }
 
     @Override
     public List<TimeManagerPlanItem> changePlan(List<TimeManagerPlanItem> plan) throws ServiceException {
         TimeManagerDao dao = DaoFactory.getTimeManagerDao();
-        for (TimeManagerPlanItem item : plan) {
-            dao.delete(item);
+        try {
+            for (TimeManagerPlanItem item : plan) {
+                dao.delete(item);
+            }
+            return dao.findAll(plan.get(0).getDate(), plan.get(0).getUser());
+
+        } catch (ConnectionPoolException | DBException e) {
+            throw new ServiceException(e);
         }
-        return dao.findAll(plan.get(0).getDate(), plan.get(0).getUser());
     }
 
     @Override
     public List<TimeManagerPlanItem> addPlan(List<TimeManagerPlanItem> plan) throws ServiceException {
-        TimeManagerDao dao = DaoFactory.getTimeManagerDao();
-        for (TimeManagerPlanItem item : plan) {
-            dao.insert(item);
+        try {
+            TimeManagerDao dao = DaoFactory.getTimeManagerDao();
+            for (TimeManagerPlanItem item : plan) {
+                dao.insert(item);
+            }
+            return plan;
+
+        } catch (ConnectionPoolException | DBException e) {
+            throw new ServiceException(e);
         }
-        return plan;
     }
 }

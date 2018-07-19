@@ -20,32 +20,39 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public User login(UserPrivates user) throws NoSuchUserException, ServiceException {
-        UserPrivates privates = DaoFactory.getUserPrivatesDao().find(user);
-        return DaoFactory.getUsersDao().find(privates.getId());
+        try {
+            UserPrivates privates = DaoFactory.getUserPrivatesDao().find(user);
+            return DaoFactory.getUsersDao().find(privates.getId());
+        } catch (ConnectionPoolException | DBException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
-    public boolean registration(User user, UserPrivates privates) throws ServiceException, UserAlreadyExistsException {
-        UsersDao usersDao = DaoFactory.getUsersDao();
-        UserPrivatesDao privatesDao = DaoFactory.getUserPrivatesDao();
+    public void registration(User user, UserPrivates privates) throws ServiceException, UserAlreadyExistsException {
         try {
-            privatesDao.find(privates);
-            throw new UserAlreadyExistsException();
-        } catch (NoSuchUserException e) {
-            e.printStackTrace();
+            UsersDao usersDao = DaoFactory.getUsersDao();
+            UserPrivatesDao privatesDao = DaoFactory.getUserPrivatesDao();
+            try {
+                privatesDao.find(privates);
+                throw new UserAlreadyExistsException();
+            } catch (NoSuchUserException e) {
+                e.printStackTrace();
+            }
+            privatesDao.insert(privates);
+            try {
+                user.setId(privatesDao.find(privates).getId());
+            } catch (NoSuchUserException e) {
+                e.printStackTrace();
+            }
+            usersDao.insert(user);
+        } catch (ConnectionPoolException | DBException e) {
+            throw new ServiceException(e);
         }
-        privatesDao.insert(privates);
-        try {
-            user.setId(privatesDao.find(privates).getId());
-        } catch (NoSuchUserException e) {
-            e.printStackTrace();
-        }
-        usersDao.insert(user);
-        return true;
     }
 
     @Test
-    public void testRegistration(){
+    public void testRegistration() {
         try {
             registration(
                     EntityFactory.createUser(null, "test5"),
