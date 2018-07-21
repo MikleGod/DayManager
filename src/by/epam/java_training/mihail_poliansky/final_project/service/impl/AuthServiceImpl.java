@@ -51,6 +51,15 @@ public class AuthServiceImpl implements AuthService {
         }
     }
 
+    @Override
+    public boolean isUserExists(String mail) throws ServiceException {
+        try {
+            return DaoFactory.getUserPrivatesDao().find(mail);
+        } catch (ConnectionPoolException | DBException e) {
+            throw new ServiceException(e);
+        }
+    }
+
     @Test
     public void testRegistration() {
         try {

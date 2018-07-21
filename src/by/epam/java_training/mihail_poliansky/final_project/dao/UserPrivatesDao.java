@@ -10,4 +10,5 @@ public interface UserPrivatesDao {
     void delete(UserPrivates user) throws ConnectionPoolException, DBException;
     UserPrivates find(UserPrivates user) throws ConnectionPoolException, DBException, NoSuchUserException;
     UserPrivates find(int userId) throws ConnectionPoolException, DBException;
+    boolean find(String mail) throws ConnectionPoolException, DBException;
 }

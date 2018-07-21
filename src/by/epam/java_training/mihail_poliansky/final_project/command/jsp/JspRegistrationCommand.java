@@ -1,4 +1,4 @@
-package by.epam.java_training.mihail_poliansky.final_project.command.jsp_impl;
+package by.epam.java_training.mihail_poliansky.final_project.command.jsp;
 
 import by.epam.java_training.mihail_poliansky.final_project.command.RegistrationCommand;
 import by.epam.java_training.mihail_poliansky.final_project.entity.User;

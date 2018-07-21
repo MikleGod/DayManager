@@ -39,4 +39,5 @@ public interface SqlQueries {
     String FIND_TIME_MANAGER_ITEM = "SELECT * FROM cash_flow_items WHERE item_name = ?;";
     String ADD_TO_USER_TMI = "INSERT INTO users_has_time_manage_items (usr_id, tmi_id) VALUES (?, ?);";
     String DELETE_FROM_USER_TMI = "DELETE FROM users_has_cash_flow_items WHERE usr_id = ? AND cfi_id = ?;";
+    String CHECK_MAIL_IS_VACANT = "SELECT * FROM user_privates WHERE mail = ?;";
 }

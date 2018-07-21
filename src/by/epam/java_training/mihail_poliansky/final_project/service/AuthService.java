@@ -11,4 +11,5 @@ import by.epam.java_training.mihail_poliansky.final_project.service.exception.Us
 public interface AuthService {
     User login(UserPrivates user) throws NoSuchUserException, ServiceException;
     void registration(User user, UserPrivates privates) throws ServiceException, UserAlreadyExistsException;
+    boolean isUserExists(String mail) throws ServiceException;
 }

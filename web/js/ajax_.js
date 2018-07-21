@@ -1,6 +1,3 @@
-
-
-
 //main events
 //------------------------------------------------------------------------------------------------------------
 
@@ -10,16 +7,24 @@ function onSubmitRegisterForm() {
     mail = $("#inputEmail").val();
     password = $("#inputPassword").val();
     nickname = $("#inputNickname").val();
-    if (/**checkMailIsVacant(mail)*/true) {
-        $("#inputEmail").val("");
-        $("#inputPassword").val("");
-        $("#inputNickname").val("");
-        registerUser(mail, nickname, password);
-    } else {
-        alert("Error");
-        return false;
-    }
-    return true;
+    $.ajax({
+        url: '/controller',
+        dataType: "json",
+        type: "POST",
+        data: "action=" + CHECK_MAIL_ACTION + "&mail=" + mail + JSON_ACTION,
+        success: function (data, text) {
+            if (data.isExists){
+                registerUser(mail,nickname, password);
+                alert("success!");
+            } else {
+                alert("user already exists");
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert(jqXHR.responseText + " " + textStatus + " " + errorThrown);
+        },
+        async: true
+    });
 }
 
 
@@ -64,33 +69,29 @@ const JSON_ACTION = "&json=true";
 function registerUser(mail, nickname, password) {
     $.ajax({
         url: '/controller',             // указываем URL и
-        dataType : "json",                     // тип загружаемых данных
+        dataType: "json",                     // тип загружаемых данных
         type: "POST",
         data: "action=" + REGISTRATION_ACTION + "&mail=" + mail +
-             "&password=" + password + "&nickname=" + nickname + JSON_ACTION
-
+        "&password=" + password + "&nickname=" + nickname + JSON_ACTION
     });
 }
 
 function isUserExistsWith(mail) {
-
-
-    var xhttp = new XMLHttpRequest();
-
-    xhttp.onreadystatechange = function () {
-        if (xhttp.readyState === XMLHttpRequest.DONE && xhttp.status === 200) {
-            //parse answer
-            return true;
-        }
-        return false;
-    };
-
-    xhttp.open('POST', 'controller', false);
-
-    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-    xhttp.send("action=checkMail&mail=" + mail + JSON_ACTION);
-
+    let isExists = true;
+    $.ajax({
+        url: '/controller',
+        dataType: "json",
+        type: "POST",
+        data: "action=" + CHECK_MAIL_ACTION + "&mail=" + mail + JSON_ACTION,
+        success: function (data, text) {
+            hui = text;
+            isExists = data.isExists;
+            alert("isUserExists "+data.isExists);
+        },
+        async: false
+    });
+    alert("isUserE " + isExists);
+    return isExists;
 }
 
 function addTmi(tmi) {

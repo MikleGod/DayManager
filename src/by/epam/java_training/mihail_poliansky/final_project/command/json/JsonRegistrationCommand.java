@@ -1,4 +1,4 @@
-package by.epam.java_training.mihail_poliansky.final_project.command.json_impl;
+package by.epam.java_training.mihail_poliansky.final_project.command.json;
 
 import com.alibaba.fastjson.JSON;
 import by.epam.java_training.mihail_poliansky.final_project.command.RegistrationCommand;

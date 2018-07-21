@@ -123,4 +123,20 @@ public class UsersPrivatesDaoImpl extends BaseDaoImpl implements UserPrivatesDao
         }
         return privates;
     }
+
+    @Override
+    public boolean find(String mail) throws ConnectionPoolException, DBException {
+        Connection connection = initConnection();
+        ResultSet set;
+        try {
+            PreparedStatement statement = connection.prepareStatement(CHECK_MAIL_IS_VACANT);
+            statement.setString(1, mail);
+            set = statement.executeQuery();
+            return set.next();
+        } catch (SQLException e) {
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+    }
 }
