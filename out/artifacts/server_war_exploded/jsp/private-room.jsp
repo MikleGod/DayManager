@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -37,19 +38,19 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">
+                            <a class="nav-link active" onclick="privateClick()" href="#">
                                 <span data-feather="home"></span>
                                 Private cab <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" onclick="calendarClick()" href="#">
                                 <span data-feather="file"></span>
                                 Calendar
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/statistics.html">
                                 <span data-feather="shopping-cart"></span>
                                 statistics
                             </a>
@@ -65,49 +66,60 @@
 
                 <div class="pc">
                     <p class="h2">
-                        <a  class="pc-a" onclick="changeDisplay('change-privates')" href="#">change-privates</a>
+                        <a class="pc-a" onclick="changeDisplay('change-privates')" href="#">change-privates</a>
                     </p>
                     <div style="display: none" id="change-privates">
-                        <form class="form-signin">
+                        <div class="form-signin">
                             <label for="inputEmail" class="sr-only">Current password</label>
-                            <input type="email" id="inputEmail" class="form-control" placeholder="Current password" required autofocus>
+                            <input type="email" id="inputEmail" class="form-control" placeholder="Current password"
+                                   required autofocus>
                             <label for="inputPassword" class="sr-only">New password</label>
-                            <input type="password" id="inputPassword" class="form-control" placeholder="New password" required>
-                            <button class="btn btn-lg btn-primary btn-block">Change</button>
-                        </form>
+                            <input type="password" id="inputPassword" class="form-control" placeholder="New password"
+                                   required>
+                            <button class="btn btn-lg btn-primary btn-block" onclick="changePassword()">Change</button>
+                        </div>
                         <!-- TODO changePassword script-->
                     </div>
                     <p class="h2">
                         <a class="pc-a" onclick="changeDisplay('look-act')" href="#">look at activities</a>
                     </p>
-                    <div id="look-act" style="display: none" >
+                    <div id="look-act" style="display: none">
                         <p class="h2">add tmi</p>
                         <p class="h2">add cfi</p>
                         <p class="h2">watch statistics</p>
                     </div>
                     <p class="h2">
-                        <a class="pc-a"  onclick="changeDisplay('admin-tmi')" href="#">admin TMI</a>
+                        <a class="pc-a" onclick="changeDisplay('admin-tmi')" href="#">admin TMI</a>
                     </p>
                     <div style="display: none" id="admin-tmi">
-                        <ul class="flex-column nav">
-                            <li class="nav-item">test1 <button>change</button><button>delete</button></li>
-                            <li class="nav-item">test2<button>change</button><button>delete</button></li>
-                            <li class="nav-item">test3<button>change</button><button>delete</button></li>
-                            <li class="nav-item">test4<button>change</button><button>delete</button></li>
+
+                        <button href="#" data-toggle="modal"
+                                data-target="#addTM">добавить
+                        </button>
+                        <ul class="flex-column nav" id="tmi-ul">
+                            <c:forEach var="elem" items="${timeManagerItems}" varStatus="i">
+                                <li class="tmi ${elem.id}">
+                                    <c:out value="${elem.name}"/>
+                                    <button onclick="deleteTmi(${elem.id})">delete</button>
+                                </li>
+                            </c:forEach>
                         </ul>
-                        <button>add</button>
                     </div>
                     <p class="h2">
-                        <a  class="pc-a" onclick="changeDisplay('admin-cfi')" href="#">admin CFI</a>
+                        <a class="pc-a" onclick="changeDisplay('admin-cfi')" href="#">admin CFI</a>
                     </p>
                     <div style="display: none" id="admin-cfi">
-                        <ul>
-                            <li>test1 <button>change</button><button>delete</button></li>
-                            <li>test2<button>change</button><button>delete</button></li>
-                            <li>test3<button>change</button><button>delete</button></li>
-                            <li>test4<button>change</button><button>delete</button></li>
+                        <button href="#" data-toggle="modal"
+                                data-target="#addCF">добавить
+                        </button>
+                        <ul id="cfi-ul">
+                            <c:forEach var="elem" items="${cashFlowItems}" varStatus="i">
+                                <li class="cfi ${elem.id}">
+                                    <c:out value="${elem.name}"/>
+                                    <button onclick="deleteCfi(${elem.id})">delete</button>
+                                </li>
+                            </c:forEach>
                         </ul>
-                        <button>add</button>
                     </div>
                 </div>
 
@@ -116,22 +128,48 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="addCF" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="add_cfi">
+                    <input type="text" id="cfi_name" title="cfi_name">
+                    <button onclick="addCfi()">Go</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addTM" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="add_tmi">
+                    <input type="text" id="tmi_name" title="tmi_name">
+                    <button onclick="addTmi()">Go</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Bootstrap core JavaScript
     ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../js/jquery-slim.min.js"><\/script>')</script>
-<script src="../js/popper.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="/libs/jquery/jquery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/ajax_.js"></script>
+<script src="/js/popper.min.js"></script>
 
 <!-- Icons -->
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script>
     feather.replace()
 </script>
-<script src="../js/private-room.js"></script>
+<script src="/js/private-room.js"></script>
 
 </body>
 </html>

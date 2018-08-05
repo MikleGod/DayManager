@@ -39,19 +39,8 @@ public class JspLoginCommand  extends LoginCommand {
 
     @Override
     protected void doMandatory(User user, HttpServletRequest req, HttpServletResponse resp) {
-        try {
-            req.getServletContext()
-                    .getRequestDispatcher(req.getServletContext().getContextPath()+"/jsp/calendar.jsp")
-                    .forward(req, resp);
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            logger.info(e.toString());
-        } catch (ServletException e) {
-            e.printStackTrace();
-            logger.info(e.getMessage());
-        }
+        req.getSession(true).setAttribute("user", user);
+        JspCommandEnum.CALENDAR.getCommand().execute(req, resp);
     }
 
 }

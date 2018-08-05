@@ -13,6 +13,6 @@
         <url-pattern>/controller</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
-        <welcome-file>html-patterns/registration-login.html</welcome-file>
+        <welcome-file>registration-login.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

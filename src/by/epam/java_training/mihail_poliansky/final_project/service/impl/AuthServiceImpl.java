@@ -1,6 +1,6 @@
 package by.epam.java_training.mihail_poliansky.final_project.service.impl;
 
-import by.epam.java_training.mihail_poliansky.final_project.dao.Impl.DaoFactory;
+import by.epam.java_training.mihail_poliansky.final_project.dao.impl.DaoFactory;
 import by.epam.java_training.mihail_poliansky.final_project.dao.UserPrivatesDao;
 import by.epam.java_training.mihail_poliansky.final_project.dao.UsersDao;
 import by.epam.java_training.mihail_poliansky.final_project.entity.User;

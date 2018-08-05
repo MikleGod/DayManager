@@ -1,6 +1,6 @@
 package by.epam.java_training.mihail_poliansky.final_project.service.impl;
 
-import by.epam.java_training.mihail_poliansky.final_project.dao.Impl.DaoFactory;
+import by.epam.java_training.mihail_poliansky.final_project.dao.impl.DaoFactory;
 import by.epam.java_training.mihail_poliansky.final_project.dao.TimeManagerDao;
 import by.epam.java_training.mihail_poliansky.final_project.dao.TimeManagerItemsDao;
 import by.epam.java_training.mihail_poliansky.final_project.entity.TimeManagerItem;

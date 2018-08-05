@@ -2,7 +2,7 @@ package by.epam.java_training.mihail_poliansky.final_project.service.impl;
 
 import by.epam.java_training.mihail_poliansky.final_project.dao.CashFlowDao;
 import by.epam.java_training.mihail_poliansky.final_project.dao.CashFlowItemsDao;
-import by.epam.java_training.mihail_poliansky.final_project.dao.Impl.DaoFactory;
+import by.epam.java_training.mihail_poliansky.final_project.dao.impl.DaoFactory;
 import by.epam.java_training.mihail_poliansky.final_project.entity.CashFlowItem;
 import by.epam.java_training.mihail_poliansky.final_project.entity.CashFlowPlanItem;
 import by.epam.java_training.mihail_poliansky.final_project.entity.User;

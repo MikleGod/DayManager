@@ -17,12 +17,12 @@ public interface SqlQueries {
     String UPDATE_CASH_FLOW = "UPDATE cash_flow SET cost = ?, cfi_id = ? WHERE cf_id = ?;";
     String SELECT_CASH_FLOW = "SELECT * FROM cash_flow INNER JOIN cash_flow_items using(cfi_id) WHERE usr_id = ? AND date = ?;";
 
-    String SELECT_CASH_FLOW_ITEMS = "SELECT item_name, usr_id FROM users_has_cash_flow_items INNER JOIN cash_flow_items i on users_has_cash_flow_items.cfi_id = i.cfi_id WHERE usr_id = ?;";
+    String SELECT_CASH_FLOW_ITEMS = "SELECT * FROM users_has_cash_flow_items INNER JOIN cash_flow_items i on users_has_cash_flow_items.cfi_id = i.cfi_id WHERE usr_id = ?;";
     String INSERT_CASH_FLOW_ITEMS = "INSERT INTO cash_flow_items (item_name) VALUES (?);";
     String DELETE_CASH_FLOW_ITEMS = "DELETE FROM cash_flow_items WHERE cfi_id = ?;";
     String UPDATE_CASH_FLOW_ITEMS = "UPDATE cash_flow_items SET item_name = ? WHERE cfi_id = ?;";
 
-    String SELECT_TIME_MANAGER_ITEMS = "SELECT item_name, usr_id FROM time_manage_items INNER JOIN time_manage m on time_manage_items.tmi_id = m.tmi_id WHERE usr_id = ?;";
+    String SELECT_TIME_MANAGER_ITEMS = "SELECT * FROM daymanagerdb.time_manage_items INNER JOIN daymanagerdb.users_has_time_manage_items m on daymanagerdb.time_manage_items.tmi_id = m.tmi_id WHERE usr_id = ?;";
     String INSERT_TIME_MANAGE_ITEMS = "INSERT INTO time_manage_items (item_name) VALUES (?);";
     String UPDATE_TIME_MANAGE_ITEMS = "UPDATE time_manage_items SET item_name = ? WHERE tmi_id = ?;";
     String DELETE_TIME_MANAGE_ITEMS = "DELETE FROM time_manage_items WHERE tmi_id = ?;";
