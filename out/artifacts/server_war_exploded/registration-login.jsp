@@ -56,6 +56,7 @@
                 <input type="email" name="mail" id="inputEmailS" class="form-control" placeholder="Email address" required>
                 <label for="inputPassword" class="sr-only">Password</label>
                 <input type="password" name="password" id="inputPasswordS" class="form-control" placeholder="Password" required>
+                <h1>${ExceptionMessage}</h1>
                 <button class="btn btn-lg btn-primary btn-block modal-btn" type="submit">Sign in</button>
                 <button type="button" class="btn btn-primary btn-lg modal-btn" data-toggle="modal"
                         data-target="#myModal">

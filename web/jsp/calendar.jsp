@@ -70,7 +70,7 @@
                         <li class="nav-item">
                             <a class="nav-link" id="statistics-link" href="/statistics.html">
                                 <span data-feather="shopping-cart"></span>
-                                statistics ${fn:length(timeManagerPlanItems)}
+                                statistics
                             </a>
                         </li>
                     </ul>

@@ -4,6 +4,7 @@ import by.epam.java_training.mihail_poliansky.final_project.command.ActionComman
 import by.epam.java_training.mihail_poliansky.final_project.entity.*;
 import by.epam.java_training.mihail_poliansky.final_project.service.CashFlowService;
 import by.epam.java_training.mihail_poliansky.final_project.service.TimeManagerService;
+import by.epam.java_training.mihail_poliansky.final_project.service.exception.DayManagerException;
 import by.epam.java_training.mihail_poliansky.final_project.service.exception.ServiceException;
 import by.epam.java_training.mihail_poliansky.final_project.service.impl.ServiceFactory;
 import by.epam.java_training.mihail_poliansky.final_project.util.DateParser;
@@ -38,12 +39,7 @@ public class JspCalendarCommand extends PageOpener {
             List<TimeManagerItem> timeManagerItems = timeManagerService.getTMItems((User) req.getSession().getAttribute("user"));
             List<CashFlowItem> cashFlowItems = cashFlowService.getCFItems((User) req.getSession().getAttribute("user"));
 
-            TimeManagerPlanList planItemsTime = new TimeManagerPlanList();
             List<TimeManagerPlanItem> planItemsList = timeManagerService.getPlan((User) req.getSession().getAttribute("user"), date);
-            planItemsTime.addAll(planItemsList);
-
-            logger.info(planItemsList.size() + " " + date + " "+dateString);
-
             List<CashFlowPlanItem> planItemsCash = cashFlowService.getCF((User) req.getSession().getAttribute("user"), date);
 
             req.setAttribute("timeManagerItems", timeManagerItems);
@@ -52,7 +48,7 @@ public class JspCalendarCommand extends PageOpener {
             req.setAttribute("cashFlowPlanItems", planItemsCash);
             req.setAttribute("date", dateString);
 
-        } catch (ServiceException e) {
+        } catch (DayManagerException e) {
             logger.info(e.toString());
             repayException(e, req, resp);
         }
@@ -60,7 +56,9 @@ public class JspCalendarCommand extends PageOpener {
         dispatch("/jsp/calendar.jsp", req, resp);
     }
 
-    private void repayException(ServiceException e, HttpServletRequest req, HttpServletResponse resp) {
+    private void repayException(DayManagerException e, HttpServletRequest req, HttpServletResponse resp) {
+        req.setAttribute("validation", e.getMessage());
 
+        dispatch("/jsp/calendar.jsp", req, resp);
     }
 }

@@ -12,7 +12,7 @@ public class CommandManager {
     private static Logger logger = LogManager.getLogger(CommandManager.class);
 
     public static ActionCommand chooseCommand(HttpServletRequest req){
-        logger.info(req);
+        logger.info(req.getQueryString());
         if (req.getParameter("json") != null && !req.getParameter("json").isEmpty()){
             return chooseJsonCommand(req);
         } else {

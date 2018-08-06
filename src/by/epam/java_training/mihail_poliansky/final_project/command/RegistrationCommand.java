@@ -24,15 +24,13 @@ public abstract class RegistrationCommand implements ActionCommand{
         } catch (UserAlreadyExistsException e) {
             doAlternative(req, resp, e);
         } catch (ServiceException e) {
-            e.printStackTrace();
+            doAlternative(req, resp, e);
         }
     }
 
     protected abstract void doAlternative(HttpServletRequest req, HttpServletResponse resp, UserAlreadyExistsException e);
 
-    protected abstract void doAlternative(HttpServletRequest req, HttpServletResponse resp, DBException e);
-
-    protected abstract void doAlternative(HttpServletRequest req, HttpServletResponse resp, ConnectionPoolException e);
+    protected abstract void doAlternative(HttpServletRequest req, HttpServletResponse resp, ServiceException e);
 
     protected abstract void doMandatory(HttpServletRequest req, HttpServletResponse resp, User user);
 }

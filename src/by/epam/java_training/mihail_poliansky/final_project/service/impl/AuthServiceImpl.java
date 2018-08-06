@@ -10,45 +10,51 @@ import by.epam.java_training.mihail_poliansky.final_project.dao.DBException;
 import by.epam.java_training.mihail_poliansky.final_project.service.exception.NoSuchUserException;
 import by.epam.java_training.mihail_poliansky.final_project.service.exception.ServiceException;
 import by.epam.java_training.mihail_poliansky.final_project.service.exception.UserAlreadyExistsException;
-import by.epam.java_training.mihail_poliansky.final_project.factory.EntityFactory;
 import by.epam.java_training.mihail_poliansky.final_project.service.AuthService;
-import org.junit.Test;
+import by.epam.java_training.mihail_poliansky.final_project.service.validator.AuthValidator;
+import by.epam.java_training.mihail_poliansky.final_project.service.validator.ServiceValidationException;
+import by.epam.java_training.mihail_poliansky.final_project.service.validator.impl.ValidatorFactory;
 
 public class AuthServiceImpl implements AuthService {
 
-    //TODO
+
+    private AuthValidator authValidator = ValidatorFactory.getAuthValidator();
 
     @Override
-    public User login(UserPrivates user) throws NoSuchUserException, ServiceException {
-        try {
-            UserPrivates privates = DaoFactory.getUserPrivatesDao().find(user);
-            return DaoFactory.getUsersDao().find(privates.getId());
-        } catch (ConnectionPoolException | DBException e) {
-            throw new ServiceException(e);
-        }
+    public User login(UserPrivates userPrivates) throws NoSuchUserException, ServiceException {
+        if (authValidator.validate(userPrivates)) {
+            try {
+                UserPrivates privates = DaoFactory.getUserPrivatesDao().find(userPrivates);
+                return DaoFactory.getUsersDao().find(privates.getId());
+            } catch (ConnectionPoolException | DBException e) {
+                throw new ServiceException(e);
+            }
+        } else throw new ServiceValidationException(userPrivates.toString());
     }
 
     @Override
     public void registration(User user, UserPrivates privates) throws ServiceException, UserAlreadyExistsException {
-        try {
-            UsersDao usersDao = DaoFactory.getUsersDao();
-            UserPrivatesDao privatesDao = DaoFactory.getUserPrivatesDao();
+        if (authValidator.validate(user)) {
             try {
-                privatesDao.find(privates);
-                throw new UserAlreadyExistsException();
-            } catch (NoSuchUserException e) {
-                e.printStackTrace();
+                UsersDao usersDao = DaoFactory.getUsersDao();
+                UserPrivatesDao privatesDao = DaoFactory.getUserPrivatesDao();
+                try {
+                    privatesDao.find(privates);
+                    throw new UserAlreadyExistsException();
+                } catch (NoSuchUserException e) {
+                    e.printStackTrace();
+                }
+                privatesDao.insert(privates);
+                try {
+                    user.setId(privatesDao.find(privates).getId());
+                } catch (NoSuchUserException e) {
+                    e.printStackTrace();
+                }
+                usersDao.insert(user);
+            } catch (ConnectionPoolException | DBException e) {
+                throw new ServiceException(e);
             }
-            privatesDao.insert(privates);
-            try {
-                user.setId(privatesDao.find(privates).getId());
-            } catch (NoSuchUserException e) {
-                e.printStackTrace();
-            }
-            usersDao.insert(user);
-        } catch (ConnectionPoolException | DBException e) {
-            throw new ServiceException(e);
-        }
+        } else throw new ServiceValidationException(privates.toString() + " ... " + user.toString());
     }
 
     @Override
@@ -57,17 +63,6 @@ public class AuthServiceImpl implements AuthService {
             return DaoFactory.getUserPrivatesDao().find(mail);
         } catch (ConnectionPoolException | DBException e) {
             throw new ServiceException(e);
-        }
-    }
-
-    @Test
-    public void testRegistration() {
-        try {
-            registration(
-                    EntityFactory.createUser(null, "test5"),
-                    EntityFactory.createUserPrivates("test5@gmail.com", "test5".hashCode()));
-        } catch (ServiceException | UserAlreadyExistsException e) {
-            e.printStackTrace();
         }
     }
 }

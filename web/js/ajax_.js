@@ -122,34 +122,43 @@ function addCFPI() {
 }
 
 function changePassword() {
-    let mail = $("#inputEmail").val();
+    let oldPass = $("#inputEmail").val();
     let password = $("#inputPassword").val();
     let message = "Success";
     $("#inputEmail").val("");
     $("#inputPassword").val("");
-    if (validateMail(mail) && validatePassword(password)) {
+    if (validatePassword2(oldPass, password)) {
         $.ajax({
             url: "/controller",
-            data: "mail=" + mail + "&password=" + password + "&action=change_privates" + JSON_ACTION,
+            data: "oldPass=" + oldPass + "&password=" + password + "&action=change_privates" + JSON_ACTION,
             type: "POST",
-            success: function () {
-                alert(message);
+            dataType: "json",
+            success: function (answ) {
+                alert(answ.message);
             },
             error: function () {
                 alert("Sorry, we've got error");
             }
         });
+    } else {
+        alert("validation error!");
     }
 }
 
 //Validation
 //-----------------------------------------------------------------------------------------------------
 function validateMail(mail) {
-    return true;
+    return mail !== "";
 }
 
-function validatePassword(password) {
-    return true;
+function validatePassword1(password) {
+    return password !== "";
+
+}
+
+
+function validatePassword2(newPass, oldPass) {
+    return newPass !== "" && oldPass !== "";
 
 }
 
@@ -158,7 +167,7 @@ function validateNickname(nickname) {
 }
 
 function validateTMPI(timeEnd, timeBegin) {
-    return true;
+    return timeBegin !== "" && timeEnd !== "";
 }
 
 //AJAX
@@ -204,8 +213,9 @@ function addTmi() {
             url: "/controller",
             data: "tmi_name=" + tmiName + "&action=add_tmi" + JSON_ACTION,
             type: "POST",
-            success: function () {
-                $("#tmi-ul").append("<li>" + tmiName + "</li>");
+            dataType: "json",
+            success: function (ans) {
+                $("#tmi-ul").append("<li class='tmi " + ans.id + "'>" + tmiName + "<button onclick='deleteCfi(" + ans.id + ")'>delete</button></li>");
             },
             error: function () {
                 alert("Sorry, we've got error");
@@ -228,8 +238,9 @@ function addCfi() {
             url: "/controller",
             data: "cfi_name=" + cfiName + "&action=add_cfi" + JSON_ACTION,
             type: "POST",
-            success: function () {
-                $("#cfi-ul").append("<li>" + cfiName + "</li>");
+            dataType: "json",
+            success: function (ans) {
+                $("#cfi-ul").append("<li class='cfi " + ans.id + "'>" + cfiName + "<button onclick='deleteCfi(" + ans.id + ")'>delete</button></li>");
             },
             error: function () {
                 alert("Sorry, we've got error");

@@ -19,4 +19,5 @@ public interface CashFlowService {
     void deleteCF(User user, Date date) throws ServiceException;
     List<CashFlowPlanItem> changeCF(List<CashFlowPlanItem> plan) throws ServiceException;
     List<CashFlowPlanItem> addCF(List<CashFlowPlanItem> plan) throws ServiceException;
+    CashFlowPlanItem addCF(CashFlowPlanItem plan) throws ServiceException;
 }

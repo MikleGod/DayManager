@@ -4,6 +4,7 @@ import by.epam.java_training.mihail_poliansky.final_project.command.Registration
 import by.epam.java_training.mihail_poliansky.final_project.entity.User;
 import by.epam.java_training.mihail_poliansky.final_project.dao.connection_pool.ConnectionPoolException;
 import by.epam.java_training.mihail_poliansky.final_project.dao.DBException;
+import by.epam.java_training.mihail_poliansky.final_project.service.exception.ServiceException;
 import by.epam.java_training.mihail_poliansky.final_project.service.exception.UserAlreadyExistsException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,12 +19,7 @@ public class JspRegistrationCommand extends RegistrationCommand {
     }
 
     @Override
-    protected void doAlternative(HttpServletRequest req, HttpServletResponse resp, DBException e) {
-
-    }
-
-    @Override
-    protected void doAlternative(HttpServletRequest req, HttpServletResponse resp, ConnectionPoolException e) {
+    protected void doAlternative(HttpServletRequest req, HttpServletResponse resp, ServiceException e) {
 
     }
 

@@ -1,5 +1,6 @@
 package by.epam.java_training.mihail_poliansky.final_project.command.json;
 
+import by.epam.java_training.mihail_poliansky.final_project.service.exception.ServiceException;
 import com.alibaba.fastjson.JSON;
 import by.epam.java_training.mihail_poliansky.final_project.command.RegistrationCommand;
 import by.epam.java_training.mihail_poliansky.final_project.entity.User;
@@ -20,12 +21,7 @@ public class JsonRegistrationCommand extends RegistrationCommand {
     }
 
     @Override
-    protected void doAlternative(HttpServletRequest req, HttpServletResponse resp, DBException e) {
-        addExceptionMessage(e, resp);
-    }
-
-    @Override
-    protected void doAlternative(HttpServletRequest req, HttpServletResponse resp, ConnectionPoolException e) {
+    protected void doAlternative(HttpServletRequest req, HttpServletResponse resp, ServiceException e) {
         addExceptionMessage(e, resp);
     }
 

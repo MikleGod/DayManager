@@ -11,119 +11,163 @@ import by.epam.java_training.mihail_poliansky.final_project.dao.DBException;
 import by.epam.java_training.mihail_poliansky.final_project.service.exception.NoSuchItemException;
 import by.epam.java_training.mihail_poliansky.final_project.service.TimeManagerService;
 import by.epam.java_training.mihail_poliansky.final_project.service.exception.ServiceException;
+import by.epam.java_training.mihail_poliansky.final_project.service.validator.ServiceValidationException;
+import by.epam.java_training.mihail_poliansky.final_project.service.validator.TimeManagerValidator;
+import by.epam.java_training.mihail_poliansky.final_project.service.validator.impl.ValidatorFactory;
 
 import java.sql.Date;
 import java.util.List;
 
 public class TimeManagerServiceImpl implements TimeManagerService {
-    //TODO
+
+    public static final String EXCEPTION_MESSAGE_SEPARATOR = " ... ";
+    TimeManagerValidator timeManagerValidator = ValidatorFactory.getTimeManagerValidator();
+
     @Override
     public TimeManagerItem changeTMItem(User user, TimeManagerItem item) throws ServiceException {
-        TimeManagerItemsDao itemsDao = DaoFactory.getTimeManagerItemsDao();
-        TimeManagerItem item1;
-        try {
+        if (timeManagerValidator.validate(item) && timeManagerValidator.validate(user)) {
+            TimeManagerItemsDao itemsDao = DaoFactory.getTimeManagerItemsDao();
+            TimeManagerItem item1;
             try {
-                item1 = itemsDao.find(item);
-            } catch (NoSuchItemException e) {
-                itemsDao.insert(item);
-                item1 = itemsDao.find(item);
+                try {
+                    item1 = itemsDao.find(item);
+                } catch (NoSuchItemException e) {
+                    itemsDao.insert(item);
+                    item1 = itemsDao.find(item);
+                }
+                itemsDao.deleteItem(user, item);
+                itemsDao.addItem(user, item1);
+                return item1;
+            } catch (ConnectionPoolException | DBException e) {
+                throw new ServiceException(e);
             }
-            itemsDao.deleteItem(user, item);
-            itemsDao.addItem(user, item1);
-            return item1;
-        } catch (ConnectionPoolException | DBException e) {
-            throw new ServiceException(e);
-        }
+        } else throw new ServiceValidationException(item.toString() + EXCEPTION_MESSAGE_SEPARATOR + user.toString());
     }
 
     @Override
-    public TimeManagerItem addTMItem(User user, TimeManagerItem item) throws ServiceException {
-        TimeManagerItemsDao itemsDao = DaoFactory.getTimeManagerItemsDao();
-        TimeManagerItem item1;
-        try {
+    public TimeManagerItem addTMItem(User user, TimeManagerItem item) throws ServiceException{
+        if (timeManagerValidator.validate(item) && timeManagerValidator.validate(user)) {
+            TimeManagerItemsDao itemsDao = DaoFactory.getTimeManagerItemsDao();
+            TimeManagerItem item1;
             try {
-                item1 = itemsDao.find(item);
-            } catch (NoSuchItemException e) {
-                itemsDao.insert(item);
-                item1 = itemsDao.find(item);
-            }
-            itemsDao.addItem(user, item1);
-            return item1;
+                try {
+                    item1 = itemsDao.find(item);
+                } catch (NoSuchItemException e) {
+                    itemsDao.insert(item);
+                    item1 = itemsDao.find(item);
+                }
+                itemsDao.addItem(user, item1);
+                return item1;
 
-        } catch (ConnectionPoolException | DBException e) {
-            throw new ServiceException(e);
-        }
+            } catch (ConnectionPoolException | DBException e) {
+                throw new ServiceException(e);
+            }
+        } else throw new ServiceValidationException(item.toString() + EXCEPTION_MESSAGE_SEPARATOR + user.toString());
     }
 
     @Override
     public void deleteTMItem(User user, TimeManagerItem item) throws ServiceException {
-        try {
-            DaoFactory.getTimeManagerItemsDao().deleteItem(user, item);
+        if (timeManagerValidator.validate(item) && timeManagerValidator.validate(user)) {
 
-        } catch (ConnectionPoolException | DBException e) {
-            throw new ServiceException(e);
-        }
+            try {
+                DaoFactory.getTimeManagerItemsDao().deleteItem(user, item);
+
+            } catch (ConnectionPoolException | DBException e) {
+                throw new ServiceException(e);
+            }
+        } else throw new ServiceValidationException(user.toString() + EXCEPTION_MESSAGE_SEPARATOR + item.toString());
     }
 
     @Override
     public List<TimeManagerItem> getTMItems(User user) throws ServiceException {
-        try {
-            return DaoFactory.getTimeManagerItemsDao().findAll(user);
+        if (timeManagerValidator.validate(user)) {
+            try {
+                return DaoFactory.getTimeManagerItemsDao().findAll(user);
 
-        } catch (ConnectionPoolException | DBException e) {
-            throw new ServiceException(e);
-        }
+            } catch (ConnectionPoolException | DBException e) {
+                throw new ServiceException(e);
+            }
+        } else throw new ServiceValidationException(user.toString());
     }
 
     @Override
     public List<TimeManagerPlanItem> getPlan(User user, Date date) throws ServiceException {
-        try {
-            return DaoFactory.getTimeManagerDao().findAll(date, user);
+        if (timeManagerValidator.validate(user) && timeManagerValidator.validate(date)) {
+            try {
+                return DaoFactory.getTimeManagerDao().findAll(date, user);
 
-        } catch (ConnectionPoolException | DBException e) {
-            throw new ServiceException(e);
-        }
+            } catch (ConnectionPoolException | DBException e) {
+                throw new ServiceException(e);
+            }
+        } else throw new ServiceValidationException(user.toString() + EXCEPTION_MESSAGE_SEPARATOR + date);
     }
 
     @Override
     public void deletePlan(User user, Date date) throws ServiceException {
-        try {
-            TimeManagerDao dao = DaoFactory.getTimeManagerDao();
-            List<TimeManagerPlanItem> items = dao.findAll(date, user);
-            for (TimeManagerPlanItem item : items) {
-                dao.delete(item);
+        if (timeManagerValidator.validate(user) && timeManagerValidator.validate(date)) {
+
+            try {
+                TimeManagerDao dao = DaoFactory.getTimeManagerDao();
+                List<TimeManagerPlanItem> items = dao.findAll(date, user);
+                for (TimeManagerPlanItem item : items) {
+                    dao.delete(item);
+                }
+
+            } catch (ConnectionPoolException | DBException e) {
+                throw new ServiceException(e);
             }
 
-        } catch (ConnectionPoolException | DBException e) {
-            throw new ServiceException(e);
-        }
+        } else throw new ServiceValidationException(user.toString() + EXCEPTION_MESSAGE_SEPARATOR + date);
     }
 
     @Override
     public List<TimeManagerPlanItem> changePlan(List<TimeManagerPlanItem> plan) throws ServiceException {
-        TimeManagerDao dao = DaoFactory.getTimeManagerDao();
-        try {
-            for (TimeManagerPlanItem item : plan) {
-                dao.delete(item);
-            }
-            return dao.findAll(plan.get(0).getDate(), plan.get(0).getUser());
+        if (timeManagerValidator.validate(plan)) {
 
-        } catch (ConnectionPoolException | DBException e) {
-            throw new ServiceException(e);
-        }
+            TimeManagerDao dao = DaoFactory.getTimeManagerDao();
+            try {
+                for (TimeManagerPlanItem item : plan) {
+                    dao.delete(item);
+                }
+                return dao.findAll(plan.get(0).getDate(), plan.get(0).getUser());
+
+            } catch (ConnectionPoolException | DBException e) {
+                throw new ServiceException(e);
+            }
+        } else throw new ServiceValidationException(plan.toArray().toString());
     }
 
     @Override
     public List<TimeManagerPlanItem> addPlan(List<TimeManagerPlanItem> plan) throws ServiceException {
-        try {
-            TimeManagerDao dao = DaoFactory.getTimeManagerDao();
-            for (TimeManagerPlanItem item : plan) {
-                dao.insert(item);
-            }
-            return plan;
+        if (timeManagerValidator.validate(plan)) {
 
-        } catch (ConnectionPoolException | DBException e) {
-            throw new ServiceException(e);
-        }
+            try {
+                TimeManagerDao dao = DaoFactory.getTimeManagerDao();
+                for (TimeManagerPlanItem item : plan) {
+                    dao.insert(item);
+                }
+                return plan;
+
+            } catch (ConnectionPoolException | DBException e) {
+                throw new ServiceException(e);
+            }
+        } else throw new ServiceValidationException(plan.toString());
     }
+
+    @Override
+    public TimeManagerPlanItem addPlan(TimeManagerPlanItem plan) throws ServiceException {
+        if (timeManagerValidator.validate(plan)) {
+
+            try {
+                TimeManagerDao dao = DaoFactory.getTimeManagerDao();
+                dao.insert(plan);
+                return plan;
+
+            } catch (ConnectionPoolException | DBException e) {
+                throw new ServiceException(e);
+            }
+        } else throw new ServiceValidationException(plan.toString());
+
+    }
+
 }

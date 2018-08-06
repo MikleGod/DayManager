@@ -1,5 +1,6 @@
 package by.epam.java_training.mihail_poliansky.final_project.command;
 
+import by.epam.java_training.mihail_poliansky.final_project.command.jsp.PageOpener;
 import by.epam.java_training.mihail_poliansky.final_project.entity.User;
 import by.epam.java_training.mihail_poliansky.final_project.dao.connection_pool.ConnectionPoolException;
 import by.epam.java_training.mihail_poliansky.final_project.dao.DBException;
@@ -11,7 +12,7 @@ import by.epam.java_training.mihail_poliansky.final_project.service.impl.Service
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public abstract class LoginCommand implements ActionCommand{
+public abstract class LoginCommand extends PageOpener {
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) {
         try {
@@ -23,12 +24,11 @@ public abstract class LoginCommand implements ActionCommand{
         } catch (NoSuchUserException e){
             doAlternative(e, req, resp);
         } catch (ServiceException e) {
-            e.printStackTrace();
+            doAlternative(e, req, resp);
         }
     }
 
     protected abstract void doAlternative(NoSuchUserException e, HttpServletRequest req, HttpServletResponse resp);
-    protected abstract void doAlternative(ConnectionPoolException e, HttpServletRequest req, HttpServletResponse resp);
-    protected abstract void doAlternative(DBException e, HttpServletRequest req, HttpServletResponse resp);
+    protected abstract void doAlternative(ServiceException e, HttpServletRequest req, HttpServletResponse resp);
     protected abstract void doMandatory(User user, HttpServletRequest req, HttpServletResponse resp);
 }
