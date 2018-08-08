@@ -7,201 +7,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b806c662-b144-46bc-a672-573c4be951e5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/command/ActionCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/command/LoginCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/command/RegistrationCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/command/json/AddCfiCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/command/json/AddCfpiCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/command/json/AddTmiCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/command/json/AddTmpiCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/command/json/ChangePrivatesCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/command/json/CheckMailCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/command/json/DeleteCfiCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/command/json/DeleteTmiCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/command/json/JsonCommandEnum.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/command/json/JsonCreator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/command/json/JsonLoginCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/command/json/JsonRegistrationCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/command/json/Message.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspCalendarCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspCommandEnum.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspLoginCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspLogoutCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspPrivateCabinetCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspRegistrationCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspStatisticsCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/command/jsp/PageOpener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/controller/CommandManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/controller/Controller.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/dao/CashFlowDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/dao/CashFlowItemsDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/dao/DBException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/dao/TimeManagerDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/dao/TimeManagerItemsDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/dao/UserPrivatesDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/dao/UsersDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/dao/connection_pool/ConnectionManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/dao/connection_pool/ConnectionPool.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/dao/connection_pool/ConnectionPoolException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/dao/constant/ColumnNames.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/dao/constant/SqlQueries.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/dao/impl/BaseDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/dao/impl/CashFlowDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/dao/impl/CashFlowItemsDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/dao/impl/DaoFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/dao/impl/TimeManagerDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/dao/impl/TimeManagerItemsDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/dao/impl/UsersDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/dao/impl/UsersPrivatesDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/entity/CashFlowItem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/entity/CashFlowPlanItem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/entity/HasId.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/entity/HasName.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/entity/Role.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/entity/TimeManagerItem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/entity/TimeManagerPlanItem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/entity/TimeManagerPlanList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/entity/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/entity/UserPrivates.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/factory/EntityFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/service/AuthService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/service/CashFlowService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/service/StatisticsService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/service/TimeManagerService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/service/exception/DayManagerException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/service/exception/NoSuchItemException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/service/exception/NoSuchUserException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/service/exception/ServiceException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/service/exception/UserAlreadyExistsException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/service/impl/AuthServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/service/impl/CashFlowServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/service/impl/ServiceFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/service/impl/StatisticsServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/service/impl/TimeManagerServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/service/validator/AuthValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/service/validator/CashFlowValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/service/validator/ServiceValidationException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/service/validator/TimeManagerValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/service/validator/ValidatorFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/by/epam/java_training/mihail_poliansky/final_project/util/DateParser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/classes/log4j2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/lib/fastjson-1.2.47.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/lib/hamcrest-core-1.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/lib/javax.servlet.jsp.jstl-1.2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/lib/javax.servlet.jsp.jstl-api-1.2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/lib/junit-4.12.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/lib/log4j-api-2.11.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/lib/log4j-core-2.11.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/lib/mysql-connector-java-8.0.11.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/assets/android-chrome-512x512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/assets/background28.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/assets/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/css/calendar.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/css/dashboard.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/css/form-validation.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/css/private-room.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/css/registration-popup.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/css/signin.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/css/statistics.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/html-patterns/calendar.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/html-patterns/private-room.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/js/ajax_.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/js/calendar-scr.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/js/common.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/js/google-api.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/js/jquery-slim.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/js/popper.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/js/private-room.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/js/registation-login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/js/statistics.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/jsp/calendar.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/jsp/private-room.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/jsp/statistics.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/layout-examples/checkout.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/layout-examples/dashboard.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/layout-examples/signin.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/libs/jquery/jquery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/libs/log4j-1.2.17.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/libs/magnific_popup/jquery.magnific-popup.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/libs/magnific_popup/jquery.magnific-popup.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/libs/magnific_popup/magnific-popup.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/registration-login.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/server_war_exploded/statistics.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/command/json/AddTmpiCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/command/json/AddTmpiCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspCalendarCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspCalendarCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspCommandEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspCommandEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspLoginCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspLoginCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspLogoutCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspLogoutCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspPrivateCabinetCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspPrivateCabinetCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspRegistrationCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/command/jsp/PageOpener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/command/jsp/PageOpener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/controller/CommandManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/controller/CommandManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/dao/CashFlowItemsDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/dao/CashFlowItemsDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/dao/Impl/BaseDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/dao/Impl/CashFlowDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/dao/Impl/CashFlowItemsDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/dao/Impl/DaoFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/dao/Impl/TimeManagerDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/dao/Impl/TimeManagerItemsDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/dao/Impl/UsersDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/dao/Impl/UsersPrivatesDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/dao/TimeManagerDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/dao/TimeManagerDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/dao/connection_pool/ConnectionManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/dao/connection_pool/ConnectionManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/dao/constant/SqlQueries.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/dao/constant/SqlQueries.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/service/AuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/service/AuthService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/service/StatisticsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/service/StatisticsService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/service/TimeManagerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/service/TimeManagerService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/service/impl/AuthServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/service/impl/AuthServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/service/impl/CashFlowServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/service/impl/CashFlowServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/service/impl/StatisticsServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/service/impl/StatisticsServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/service/impl/TimeManagerServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/service/validator/CashFlowValidator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/by/epam/java_training/mihail_poliansky/final_project/service/validator/CashFlowValidator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/server/dao/impl/TimeManagerDaoTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/server/dao/impl/TimeManagerDaoTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/server/dao/impl/UsersDaoTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/server/dao/impl/UsersDaoTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/server/dao/impl/UsersPrivatesDaoTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/server/dao/impl/UsersPrivatesDaoTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/command/json/AddTmpiCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/command/json/AddTmpiCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspCalendarCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspCalendarCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspCommandEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspCommandEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspLoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspLoginCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspLogoutCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspLogoutCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspPrivateCabinetCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspPrivateCabinetCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspRegistrationCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspStatisticsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspStatisticsCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/command/jsp/PageOpener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/command/jsp/PageOpener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/controller/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/controller/CommandManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/dao/CashFlowItemsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/dao/CashFlowItemsDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/dao/TimeManagerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/dao/TimeManagerDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/dao/connection_pool/ConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/dao/connection_pool/ConnectionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/dao/constant/SqlQueries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/dao/constant/SqlQueries.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/dao/impl/CashFlowDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/dao/impl/CashFlowDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/dao/impl/CashFlowItemsDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/dao/impl/CashFlowItemsDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/dao/impl/TimeManagerDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/dao/impl/TimeManagerDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/dao/impl/UsersDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/dao/impl/UsersDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/dao/impl/UsersPrivatesDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/dao/impl/UsersPrivatesDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/service/StatisticsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/service/StatisticsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/service/impl/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/service/impl/AuthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/service/impl/CashFlowServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/service/impl/CashFlowServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/service/impl/StatisticsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/service/impl/StatisticsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/service/impl/TimeManagerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/service/impl/TimeManagerServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/service/validator/impl/ValidatorFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/service/validator/impl/ServiceValidatorFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/dao/impl/TimeManagerDaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/dao/impl/TimeManagerDaoTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/dao/impl/UsersDaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/dao/impl/UsersDaoTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/dao/impl/UsersPrivatesDaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/dao/impl/UsersPrivatesDaoTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/js/ajax_.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/ajax_.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/js/calendar-scr.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/calendar-scr.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/js/statistics.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/statistics.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/jsp/calendar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/jsp/calendar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/jsp/private-room.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/jsp/private-room.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/jsp/statistics.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/jsp/statistics.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/libs/jquery/jquery.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/libs/jquery/jquery.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/statistics.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/statistics.html" afterDir="false" />
-    </list>
+    <list default="true" id="b806c662-b144-46bc-a672-573c4be951e5" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -261,7 +67,7 @@
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.21" value="1" />
           <entry key="project.opened" value="2" />
@@ -283,7 +89,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspStatisticsCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
+            <state relative-caret-position="228">
               <caret line="28" column="73" lean-forward="true" selection-start-line="28" selection-start-column="73" selection-end-line="28" selection-end-column="73" />
             </state>
           </provider>
@@ -458,7 +264,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1533734434153" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1533734438640" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/javax.servlet.jsp.jstl-api-1.2.1.jar!/" />
@@ -713,7 +519,7 @@
       <workItem from="1533302811757" duration="43722000" />
       <workItem from="1533535003964" duration="10342000" />
       <workItem from="1533669729028" duration="15603000" />
-      <workItem from="1533729652455" duration="4775000" />
+      <workItem from="1533729652455" duration="4894000" />
     </task>
     <servers />
   </component>
@@ -750,11 +556,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143433000" />
+    <option name="totallyTimeSpent" value="143552000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1299" height="743" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" x="630" y="58" width="420" height="894" id="Project" order="0" sideWeight="0.49394673" visible="true" weight="0.27134877" />
       <window_info id="Structure" order="1" sideWeight="0.50605327" side_tool="true" weight="0.26177174" />
@@ -771,11 +576,11 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info active="true" anchor="bottom" id="Messages" order="7" visible="true" weight="0.32626426" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.32626426" />
       <window_info anchor="bottom" id="Java Enterprise" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="10" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.24469821" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.24469821" />
       <window_info anchor="bottom" id="Application Servers" order="12" weight="0.32789558" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -1192,7 +997,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/by/epam/java_training/mihail_poliansky/final_project/command/jsp/JspStatisticsCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
+        <state relative-caret-position="228">
           <caret line="28" column="73" lean-forward="true" selection-start-line="28" selection-start-column="73" selection-end-line="28" selection-end-column="73" />
         </state>
       </provider>
