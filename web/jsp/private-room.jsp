@@ -21,11 +21,13 @@
 </head>
 <body>
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
-    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">${companyName}</a>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#">Sign out</a>
+            <form action="controller" method="post" name="logout">
+                <input type="hidden" name="action" value="logout">
+                <button type="submit" class="nav-link" href="#">${signOut}</button>
+            </form>
         </li>
     </ul>
 </nav>
@@ -40,19 +42,19 @@
                         <li class="nav-item">
                             <a class="nav-link active" onclick="privateClick()" href="#">
                                 <span data-feather="home"></span>
-                                Private cab <span class="sr-only">(current)</span>
+                                ${privateCab}<span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" onclick="calendarClick()" href="#">
                                 <span data-feather="file"></span>
-                                Calendar
+                                ${calendarNav}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/statistics.html">
                                 <span data-feather="shopping-cart"></span>
-                                statistics
+                                ${statisticsNav}
                             </a>
                         </li>
                     </ul>
@@ -66,57 +68,66 @@
 
                 <div class="pc">
                     <p class="h2">
-                        <a class="pc-a" onclick="changeDisplay('change-privates')" href="#">change-privates</a>
+                        <h1>${chooseLang}</h1>
+                        <select id="langSelect">
+                            <option name="RUS">${russian}</option>
+                            <option name="ENG">${english}</option>
+                        </select>
+                    <button onclick="changeLang()">${choose}</button>
+                    </p>
+
+                    <p class="h2">
+                        <a class="pc-a" onclick="changeDisplay('change-privates')" href="#">${changePassword}</a>
                     </p>
                     <div style="display: none" id="change-privates">
                         <div class="form-signin">
-                            <label for="inputEmail" class="sr-only">Current password</label>
-                            <input type="email" id="inputEmail" class="form-control" placeholder="Current password"
+                            <label for="inputEmail" class="sr-only">${currentPassword}</label>
+                            <input type="email" id="inputEmail" class="form-control" placeholder="${currentPassword}"
                                    required autofocus>
-                            <label for="inputPassword" class="sr-only">New password</label>
-                            <input type="password" id="inputPassword" class="form-control" placeholder="New password"
+                            <label for="inputPassword" class="sr-only">${newPassword}</label>
+                            <input type="password" id="inputPassword" class="form-control" placeholder="${newPassword}"
                                    required>
-                            <button class="btn btn-lg btn-primary btn-block" onclick="changePassword()">Change</button>
+                            <button class="btn btn-lg btn-primary btn-block" onclick="changePassword()">${change}</button>
                         </div>
                         <!-- TODO changePassword script-->
                     </div>
-                    <p class="h2">
-                        <a class="pc-a" onclick="changeDisplay('look-act')" href="#">look at activities</a>
+                    <!--<p class="h2">
+                        <a class="pc-a" onclick="changeDisplay('look-act')" href="#">${lookActivities}</a>
                     </p>
                     <div id="look-act" style="display: none">
                         <p class="h2">add tmi</p>
                         <p class="h2">add cfi</p>
                         <p class="h2">watch statistics</p>
-                    </div>
+                    </div>-->
                     <p class="h2">
-                        <a class="pc-a" onclick="changeDisplay('admin-tmi')" href="#">admin TMI</a>
+                        <a class="pc-a" onclick="changeDisplay('admin-tmi')" href="#">${showTMI}</a>
                     </p>
                     <div style="display: none" id="admin-tmi">
 
                         <button href="#" data-toggle="modal"
-                                data-target="#addTM">добавить
+                                data-target="#addTM">${add}
                         </button>
                         <ul class="flex-column nav" id="tmi-ul">
                             <c:forEach var="elem" items="${timeManagerItems}" varStatus="i">
                                 <li class="tmi ${elem.id}">
                                     <c:out value="${elem.name}"/>
-                                    <button onclick="deleteTmi(${elem.id})">delete</button>
+                                    <button onclick="deleteTmi(${elem.id})">${delete}</button>
                                 </li>
                             </c:forEach>
                         </ul>
                     </div>
                     <p class="h2">
-                        <a class="pc-a" onclick="changeDisplay('admin-cfi')" href="#">admin CFI</a>
+                        <a class="pc-a" onclick="changeDisplay('admin-cfi')" href="#">${showCFI}</a>
                     </p>
                     <div style="display: none" id="admin-cfi">
                         <button href="#" data-toggle="modal"
-                                data-target="#addCF">добавить
+                                data-target="#addCF">${add}
                         </button>
                         <ul id="cfi-ul">
                             <c:forEach var="elem" items="${cashFlowItems}" varStatus="i">
                                 <li class="cfi ${elem.id}">
                                     <c:out value="${elem.name}"/>
-                                    <button onclick="deleteCfi(${elem.id})">delete</button>
+                                    <button onclick="deleteCfi(${elem.id})">${delete}</button>
                                 </li>
                             </c:forEach>
                         </ul>
@@ -134,8 +145,9 @@
         <div class="modal-content">
             <div class="modal-body">
                 <div id="add_cfi">
+                    <h1>${typeCFIName}</h1>
                     <input type="text" id="cfi_name" title="cfi_name">
-                    <button onclick="addCfi()">Go</button>
+                    <button onclick="addCfi()">${add}</button>
                 </div>
             </div>
         </div>
@@ -148,8 +160,9 @@
         <div class="modal-content">
             <div class="modal-body">
                 <div id="add_tmi">
+                    <h1>${typeTMIName}</h1>
                     <input type="text" id="tmi_name" title="tmi_name">
-                    <button onclick="addTmi()">Go</button>
+                    <button onclick="addTmi()">${add}</button>
                 </div>
             </div>
         </div>

@@ -13,6 +13,5 @@ public interface CashFlowItemsDao {
     void insert(CashFlowItem item) throws ConnectionPoolException, DBException;
     void addItem(User user, CashFlowItem item) throws ConnectionPoolException, DBException;
     void deleteItem(User user, CashFlowItem item) throws ConnectionPoolException, DBException;
-    void update(CashFlowItem item) throws ConnectionPoolException, DBException;
     void delete(CashFlowItem item) throws ConnectionPoolException, DBException;
 }

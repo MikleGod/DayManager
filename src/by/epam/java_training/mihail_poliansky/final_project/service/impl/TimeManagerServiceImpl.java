@@ -13,7 +13,7 @@ import by.epam.java_training.mihail_poliansky.final_project.service.TimeManagerS
 import by.epam.java_training.mihail_poliansky.final_project.service.exception.ServiceException;
 import by.epam.java_training.mihail_poliansky.final_project.service.validator.ServiceValidationException;
 import by.epam.java_training.mihail_poliansky.final_project.service.validator.TimeManagerValidator;
-import by.epam.java_training.mihail_poliansky.final_project.service.validator.impl.ValidatorFactory;
+import by.epam.java_training.mihail_poliansky.final_project.service.validator.impl.ServiceValidatorFactory;
 
 import java.sql.Date;
 import java.util.List;
@@ -21,7 +21,7 @@ import java.util.List;
 public class TimeManagerServiceImpl implements TimeManagerService {
 
     public static final String EXCEPTION_MESSAGE_SEPARATOR = " ... ";
-    TimeManagerValidator timeManagerValidator = ValidatorFactory.getTimeManagerValidator();
+    TimeManagerValidator timeManagerValidator = ServiceValidatorFactory.getTimeManagerValidator();
 
     @Override
     public TimeManagerItem changeTMItem(User user, TimeManagerItem item) throws ServiceException {
@@ -45,11 +45,20 @@ public class TimeManagerServiceImpl implements TimeManagerService {
     }
 
     @Override
-    public TimeManagerItem addTMItem(User user, TimeManagerItem item) throws ServiceException{
+    public TimeManagerItem addTMItem(User user, TimeManagerItem item) throws ServiceException {
         if (timeManagerValidator.validate(item) && timeManagerValidator.validate(user)) {
-            TimeManagerItemsDao itemsDao = DaoFactory.getTimeManagerItemsDao();
-            TimeManagerItem item1;
+
             try {
+                TimeManagerItemsDao itemsDao = DaoFactory.getTimeManagerItemsDao();
+
+                List<TimeManagerItem> items = itemsDao.findAll(user);
+                for (TimeManagerItem cashFlowItem : items) {
+                    if (cashFlowItem.getName().equals(item.getName())) {
+                        throw new ServiceException("Already has this item");
+                    }
+                }
+
+                TimeManagerItem item1;
                 try {
                     item1 = itemsDao.find(item);
                 } catch (NoSuchItemException e) {

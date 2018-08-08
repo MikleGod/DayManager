@@ -1,4 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %><html lang="en">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,21 +11,24 @@
     <title>Dashboard Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../css/dashboard.css" rel="stylesheet">
-    <link href="../css/signin.css" rel="stylesheet">
+    <link href="/css/dashboard.css" rel="stylesheet">
+    <link href="/css/signin.css" rel="stylesheet">
 
     <link rel="stylesheet" href="../css/private-room.css">
     <link rel="stylesheet" href="../css/statistics.css">
+
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script src="/libs/jquery/jquery.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">${companyName}</a>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#">Sign out</a>
+            <a class="nav-link" href="#">${signOut}</a>
         </li>
     </ul>
 </nav>
@@ -37,19 +42,19 @@
                         <li class="nav-item">
                             <a class="nav-link" onclick="privateClick()" href="#">
                                 <span data-feather="home"></span>
-                                Private cab <span class="sr-only">(current)</span>
+                                ${privateCab} <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link " onclick="calendarClick()" href="#">
                                 <span data-feather="file"></span>
-                                Calendar
+                                ${calendarNav}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" onclick="statClick()" href="#">
                                 <span data-feather="shopping-cart"></span>
-                                statistics
+                                ${statisticsNav}
                             </a>
                         </li>
                     </ul>
@@ -60,23 +65,33 @@
         </nav>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 main-part">
             <nav class="navbar navbar-dark bg-dark flex-md-nowrap p-0 shadow">
-                <a class="navbar-brand col-sm-3 col-md-2 mr-0 a" onclick="tmi_cfi('tm-part', 'cf-part')" href="#">tmi</a>
-                <a class="navbar-brand col-sm-3 col-md-2 mr-0 a" href="#">choose time</a>
-                <a class="navbar-brand col-sm-3 col-md-2 mr-0 a" onclick="tmi_cfi('cf-part', 'tm-part')" href="#">cfi</a>
+                <a class="navbar-brand col-sm-3 col-md-2 mr-0 a" onclick="tmi_cfi('tm-part', 'cf-part')"
+                   href="#">${tmi}</a>
+                <a class="navbar-brand col-sm-3 col-md-2 mr-0 a" href="#">${chooseTime}</a>
+                <a class="navbar-brand col-sm-3 col-md-2 mr-0 a" onclick="tmi_cfi('cf-part', 'tm-part')"
+                   href="#">${cfi}</a>
             </nav>
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom included-part">
                 <div id="tm-part" style="display: block">
                     <div id="tmi-label" style="width: 500px; height: 400px;"></div>
-                    <div id="tmi_s" class="none-disp">
-                        <div id="transport">10</div>
-                        <div id="son">90</div>
+                    <div id="tmi_s">
+                        <h1>${timeSpend}</h1>
+                        <ul>
+                            <c:forEach var="elem" items="${timeManageStatDto}">
+                            <li id="tmi ${elem.tmi.id}">${elem.tmi.name}: ${elem.time}</li>
+                            </c:forEach>
+                        </ul>
                     </div>
                 </div>
                 <div id="cf-part" style="display: none">
                     <div id="cfi-label" style="width: 500px; height: 400px;"></div>
-                    <div id="cfi_s" class="none-disp">
-                        <div id="transport ">10</div>
-                        <div id="food">20</div>
+                    <div id="cfi_s">
+                        <h1>${moneySpend}</h1>
+                        <ul>
+                            <c:forEach var="elem" items="${cashFlowStatDto}">
+                                <li id="cfi ${elem.cfi.id}">${elem.cfi.name}: ${elem.cost}</li>
+                            </c:forEach>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -87,76 +102,16 @@
 <!-- Bootstrap core JavaScript
     ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../js/jquery-slim.min.js"><\/script>')</script>
-<script src="../js/popper.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Icons -->
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script>
     feather.replace()
 </script>
-<script src="../js/private-room.js"></script>
+<script src="/js/private-room.js"></script>
 
-<script src="/js/google-api.js"></script>
-<script>
-    google.load("visualization", "1", {packages: ["corechart"]});
-    google.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-        var attr = document.getElementById("tmi_s").childNodes;
-        var attr2 = document.getElementById("cfi_s").childNodes;
-        var arr = [], arr2 = [];
-        arr.push(["tmi", 'time']);
-        arr2.push(["cfi", 'cost']);
-        for (var i = 0; i < attr.length; i++) {
-            item = attr.item(i);
-            item2 = attr2.item(i);
-            id = item.id;
-            id2 = item2.id;
-            text = item.textContent;
-            text2 = item2.textContent;
-            if (id !== "" && id !== undefined && !!text && text !== "") {
-                arr.push([id, +text]);
-            }
-            if (id2 !== "" && id2 !== undefined && !!text2 && text2 !== "") {
-                arr2.push([id2, +text2]);
-            }
-        }
-        var data = google.visualization.arrayToDataTable(/*[
-            ['Газ', 'Объём'],
-            ['Азот',     78.09],
-            ['Кислород', 20.95],
-            ['Аргон',    0.93],
-            ['Углекислый газ', 0.03]
-        ]*/arr), data2 = google.visualization.arrayToDataTable(arr2);
-        var options = {
-            title: 'Расходованное время',
-            is3D: false,
-            pieResidueSliceLabel: 'Остальное'
-        };
-        var options2 = {
-            title: 'Расходованные средства',
-            is3D: false,
-            pieResidueSliceLabel: 'Остальное'
-        };
-        var chart = new google.visualization.PieChart(document.getElementById('tmi-label'));
-        var chart2 = new google.visualization.PieChart(document.getElementById('cfi-label'));
-        chart.draw(data, options);
-        chart2.draw(data2, options2);
-        chart2.width = 500;
-    }
-
-    function tmi_cfi(id, id2) {
-        if (document.getElementById(id).style.display === 'none'){
-            document.getElementById(id).style.display = 'block';
-            document.getElementById(id2).style.display = 'none';
-        }
-    }
-</script>
 
 </body>
 </html>

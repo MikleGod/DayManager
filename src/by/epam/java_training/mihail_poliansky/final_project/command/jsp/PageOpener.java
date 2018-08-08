@@ -10,7 +10,7 @@ import java.io.IOException;
 public abstract class PageOpener implements ActionCommand {
     protected void dispatch(String page, HttpServletRequest req, HttpServletResponse resp){
         try {
-            req.getRequestDispatcher(req.getServletContext().getContextPath()+page).forward(req, resp);
+            req.getServletContext().getRequestDispatcher(page).forward(req, resp);
         } catch (ServletException | IOException e) {
             openErrorPage(req, resp, e);
         }

@@ -22,7 +22,7 @@ public interface SqlQueries {
     String DELETE_CASH_FLOW_ITEMS = "DELETE FROM cash_flow_items WHERE cfi_id = ?;";
     String UPDATE_CASH_FLOW_ITEMS = "UPDATE cash_flow_items SET item_name = ? WHERE cfi_id = ?;";
 
-    String SELECT_TIME_MANAGER_ITEMS = "SELECT * FROM daymanagerdb.time_manage_items INNER JOIN daymanagerdb.users_has_time_manage_items m on daymanagerdb.time_manage_items.tmi_id = m.tmi_id WHERE usr_id = ?;";
+    String SELECT_TIME_MANAGER_ITEMS = "SELECT * FROM time_manage_items INNER JOIN users_has_time_manage_items m on time_manage_items.tmi_id = m.tmi_id WHERE usr_id = ?;";
     String INSERT_TIME_MANAGE_ITEMS = "INSERT INTO time_manage_items (item_name) VALUES (?);";
     String UPDATE_TIME_MANAGE_ITEMS = "UPDATE time_manage_items SET item_name = ? WHERE tmi_id = ?;";
     String DELETE_TIME_MANAGE_ITEMS = "DELETE FROM time_manage_items WHERE tmi_id = ?;";
@@ -31,13 +31,15 @@ public interface SqlQueries {
     String DELETE_TIME_MANAGE = "DELETE FROM time_manage WHERE usr_id = ? AND date = ? OR tm_id = ?;";
     String INSERT_TIME_MANAGE = "INSERT INTO time_manage (usr_id, date, time_begin, time_end, tmi_id) VALUES (?, ?, ?, ?, ?);";
     String SELECT_TIME_MANAGE = "SELECT * FROM time_manage INNER JOIN time_manage_items using(tmi_id) WHERE usr_id = ? AND date = ?;";
+    String SELECT_ALL_TIME_MANAGE = "SELECT * FROM time_manage INNER JOIN time_manage_items using(tmi_id) WHERE usr_id = ?";
 
     String FIND_USER_PRIVATES = "SELECT usr_id FROM user_privates WHERE password = ? AND mail = ?;";
     String FIND_CASH_FLOW_ITEM = "SELECT * FROM cash_flow_items WHERE item_name = ?;";
     String ADD_TO_USER_CFI = "INSERT INTO users_has_cash_flow_items (usr_id, cfi_id) VALUES (?, ?);";
     String DELETE_FROM_USER_CFI = "DELETE FROM users_has_cash_flow_items WHERE usr_id = ? AND cfi_id = ?;";
-    String FIND_TIME_MANAGER_ITEM = "SELECT * FROM cash_flow_items WHERE item_name = ?;";
+
+    String FIND_TIME_MANAGER_ITEM = "SELECT * FROM time_manage_items WHERE item_name = ?;";
     String ADD_TO_USER_TMI = "INSERT INTO users_has_time_manage_items (usr_id, tmi_id) VALUES (?, ?);";
-    String DELETE_FROM_USER_TMI = "DELETE FROM users_has_cash_flow_items WHERE usr_id = ? AND cfi_id = ?;";
+    String DELETE_FROM_USER_TMI = "DELETE FROM users_has_time_manage_items WHERE usr_id = ? AND tmi_id = ?;";
     String CHECK_MAIL_IS_VACANT = "SELECT * FROM user_privates WHERE mail = ?;";
 }

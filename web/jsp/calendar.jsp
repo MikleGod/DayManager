@@ -38,12 +38,12 @@
 </head>
 <body>
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">${companyName}</a>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
             <form action="controller" method="post" name="logout">
                 <input type="hidden" name="action" value="logout">
-                <button type="submit" class="nav-link" href="#">Sign out</button>
+                <button type="submit" class="nav-link" href="#">${signOut}</button>
             </form>
         </li>
     </ul>
@@ -58,19 +58,19 @@
                         <li class="nav-item">
                             <a class="nav-link" id="private-link" onclick="privateClick()" href="#">
                                 <span data-feather="home"></span>
-                                Private cab <span class="sr-only">(current)</span>
+                                ${privateCab}<span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" id="calendar-link" onclick="calendarClick()" href="#">
                                 <span data-feather="file"></span>
-                                Calendar
+                                ${calendarNav}
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="statistics-link" href="/statistics.html">
+                            <a class="nav-link" id="statistics-link" onclick="statClick()">
                                 <span data-feather="shopping-cart"></span>
-                                statistics
+                                ${statisticsNav}
                             </a>
                         </li>
                     </ul>
@@ -81,10 +81,10 @@
         </nav>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 main-part">
             <nav class="navbar navbar-dark bg-dark flex-md-nowrap p-0 shadow">
-                <a class="navbar-brand col-sm-3 col-md-2 mr-0 a" onclick="cfi_tmi('tm', 'cf')" href="#">tmi</a>
+                <a class="navbar-brand col-sm-3 col-md-2 mr-0 a" onclick="cfi_tmi('tm', 'cf')" href="#">${tmi}</a>
                 <a class="navbar-brand col-sm-3 col-md-2 mr-0 a" href="#" data-toggle="modal"
-                   data-target="#myModal">choose day</a>
-                <a class="navbar-brand col-sm-3 col-md-2 mr-0 a" onclick="tmi_cfi('cf', 'tm')" href="#">cfi</a>
+                   data-target="#myModal">${chooseDay}</a>
+                <a class="navbar-brand col-sm-3 col-md-2 mr-0 a" onclick="tmi_cfi('cf', 'tm')" href="#">${cfi}</a>
             </nav>
             <h3 id="date">${date}</h3>
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom included-part">
@@ -92,7 +92,7 @@
                     <ul id="tm-ul">
                         <li>
                             <button href="#" data-toggle="modal"
-                                    data-target="#addTM">добавить
+                                    data-target="#addTM">${add}
                             </button>
                         </li>
                         <c:forEach var="elem" items="${timeManagerPlanItems}" varStatus="i">
@@ -106,7 +106,7 @@
                     <ul id="cf-ul">
                         <li>
                             <button href="#" data-toggle="modal"
-                                    data-target="#addCF">добавить
+                                    data-target="#addCF">${add}
                             </button>
                         </li>
                         <c:forEach var="elem" items="${cashFlowPlanItems}" varStatus="i">
@@ -129,7 +129,7 @@
                                             <option name="${elem.id}">${elem.name}</option>
                                         </c:forEach>
                                     </select></p>
-                                    <button onclick="addTMPI()">Go</button>
+                                    <button onclick="addTMPI()">${submit}</button>
                                 </div>
                             </div>
                         </div>
@@ -147,7 +147,7 @@
                                             <option name="${elem.id}">${elem.name}</option>
                                         </c:forEach>
                                     </select></p>
-                                    <button onclick="addCFPI()">Go</button>
+                                    <button onclick="addCFPI()">${submit}</button>
                                 </div>
                             </div>
                         </div>
@@ -164,28 +164,28 @@
                                         <thead>
                                         <tr>
                                             <td colspan="4"><select>
-                                                <option value="0">Январь</option>
-                                                <option value="1">Февраль</option>
-                                                <option value="2">Март</option>
-                                                <option value="3">Апрель</option>
-                                                <option value="4">Май</option>
-                                                <option value="5">Июнь</option>
-                                                <option value="6">Июль</option>
-                                                <option value="7">Август</option>
-                                                <option value="8">Сентябрь</option>
-                                                <option value="9">Октябрь</option>
-                                                <option value="10">Ноябрь</option>
-                                                <option value="11">Декабрь</option>
+                                                <option value="0">${jan}</option>
+                                                <option value="1">${feb}</option>
+                                                <option value="2">${mar}</option>
+                                                <option value="3">${apr}</option>
+                                                <option value="4">${may}</option>
+                                                <option value="5">${jun}</option>
+                                                <option value="6">${jul}</option>
+                                                <option value="7">${aug}</option>
+                                                <option value="8">${sep}</option>
+                                                <option value="9">${oct}</option>
+                                                <option value="10">${nov}</option>
+                                                <option value="11">${dec}</option>
                                             </select>
                                             <td colspan="3"><input type="number" value="" min="0" max="9999" size="4">
                                         <tr>
-                                            <td>Пн
-                                            <td>Вт
-                                            <td>Ср
-                                            <td>Чт
-                                            <td>Пт
-                                            <td>Сб
-                                            <td>Вс
+                                            <td>${mon}
+                                            <td>${tue}
+                                            <td>${wed}
+                                            <td>${thu}
+                                            <td>${fri}
+                                            <td>${sat}
+                                            <td>${sun}
                                         <tbody>
                                     </table>
                                 </div>

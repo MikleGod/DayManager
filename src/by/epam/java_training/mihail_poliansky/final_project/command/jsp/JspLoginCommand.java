@@ -1,11 +1,13 @@
 package by.epam.java_training.mihail_poliansky.final_project.command.jsp;
 
 import by.epam.java_training.mihail_poliansky.final_project.command.LoginCommand;
+import by.epam.java_training.mihail_poliansky.final_project.entity.LanguageEnum;
 import by.epam.java_training.mihail_poliansky.final_project.entity.User;
 import by.epam.java_training.mihail_poliansky.final_project.dao.connection_pool.ConnectionPoolException;
 import by.epam.java_training.mihail_poliansky.final_project.dao.DBException;
 import by.epam.java_training.mihail_poliansky.final_project.service.exception.NoSuchUserException;
 import by.epam.java_training.mihail_poliansky.final_project.service.exception.ServiceException;
+import by.epam.java_training.mihail_poliansky.final_project.util.ResourceManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -38,6 +40,7 @@ public class JspLoginCommand  extends LoginCommand {
     @Override
     protected void doMandatory(User user, HttpServletRequest req, HttpServletResponse resp) {
         req.getSession(true).setAttribute("user", user);
+        req.getSession(true).setAttribute("lang", new ResourceManager());
         JspCommandEnum.CALENDAR.getCommand().execute(req, resp);
     }
 

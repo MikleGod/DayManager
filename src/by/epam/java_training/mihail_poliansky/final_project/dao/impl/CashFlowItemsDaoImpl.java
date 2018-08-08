@@ -61,20 +61,6 @@ class CashFlowItemsDaoImpl extends BaseDaoImpl implements CashFlowItemsDao {
         com(user, item, DELETE_FROM_USER_CFI);
     }
 
-    @Override
-    public void update(CashFlowItem item) throws ConnectionPoolException, DBException {
-        Connection connection = initConnection();
-        try {
-            PreparedStatement statement = connection.prepareStatement(UPDATE_CASH_FLOW_ITEMS);
-            statement.setString(1, item.getName());
-            statement.setInt(2, item.getId());
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            throw new DBException(e);
-        } finally {
-            closeConnection(connection);
-        }
-    }
 
     @Override
     public void delete(CashFlowItem item) throws ConnectionPoolException, DBException  {

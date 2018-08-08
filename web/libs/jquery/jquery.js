@@ -451,14 +451,14 @@ jQuery.extend({
 
 	isPlainObject: function( obj ) {
 		// Must be an Object.
-		// Because of IE, we also have to check the presence of the constructor property.
+		// Because of IE, we also have to check the presence of the constructor by.epam.java_training.mihail_poliansky.final_project.property.
 		// Make sure that DOM nodes and window objects don't pass through, as well
 		if ( !obj || jQuery.type(obj) !== "object" || obj.nodeType || jQuery.isWindow( obj ) ) {
 			return false;
 		}
 
 		try {
-			// Not own constructor property must be Object
+			// Not own constructor by.epam.java_training.mihail_poliansky.final_project.property must be Object
 			if ( obj.constructor &&
 				!core_hasOwn.call(obj, "constructor") &&
 				!core_hasOwn.call(obj.constructor.prototype, "isPrototypeOf") ) {
@@ -1340,7 +1340,7 @@ jQuery.support = (function() {
 		// Check the default checkbox/radio value ("" on WebKit; "on" elsewhere)
 		checkOn: !!input.value,
 
-		// Make sure that a selected-by-default option has a working selected property.
+		// Make sure that a selected-by-default option has a working selected by.epam.java_training.mihail_poliansky.final_project.property.
 		// (WebKit defaults to false instead of true, IE too, if it's in an optgroup)
 		optSelected: opt.selected,
 
@@ -1596,17 +1596,17 @@ function internalData( elem, name, data, pvt /* Internal Use Only */ ){
 		thisCache[ jQuery.camelCase( name ) ] = data;
 	}
 
-	// Check for both converted-to-camel and non-converted data property names
-	// If a data property was specified
+	// Check for both converted-to-camel and non-converted data by.epam.java_training.mihail_poliansky.final_project.property names
+	// If a data by.epam.java_training.mihail_poliansky.final_project.property was specified
 	if ( getByName ) {
 
-		// First Try to find as-is property data
+		// First Try to find as-is by.epam.java_training.mihail_poliansky.final_project.property data
 		ret = thisCache[ name ];
 
-		// Test for null|undefined property data
+		// Test for null|undefined by.epam.java_training.mihail_poliansky.final_project.property data
 		if ( ret == null ) {
 
-			// Try to find the camelCased property
+			// Try to find the camelCased by.epam.java_training.mihail_poliansky.final_project.property
 			ret = thisCache[ jQuery.camelCase( name ) ];
 		}
 	} else {
@@ -2030,7 +2030,7 @@ jQuery.fn.extend({
 	removeProp: function( name ) {
 		name = jQuery.propFix[ name ] || name;
 		return this.each(function() {
-			// try/catch handles cases where IE balks (such as removing a property on window)
+			// try/catch handles cases where IE balks (such as removing a by.epam.java_training.mihail_poliansky.final_project.property on window)
 			try {
 				this[ name ] = undefined;
 				delete this[ name ];
@@ -2358,7 +2358,7 @@ jQuery.extend({
 
 				// Boolean attributes get special treatment (#10870)
 				if ( rboolean.test( name ) ) {
-					// Set corresponding property to false for boolean attributes
+					// Set corresponding by.epam.java_training.mihail_poliansky.final_project.property to false for boolean attributes
 					// Also clear defaultChecked/defaultSelected (if appropriate) for IE<8
 					if ( !getSetAttribute && ruseDefault.test( name ) ) {
 						elem[ jQuery.camelCase( "default-" + name ) ] =
@@ -2492,7 +2492,7 @@ boolHook = {
 			// Remove boolean attributes when set to false
 			jQuery.removeAttr( elem, name );
 		} else if ( getSetInput && getSetAttribute || !ruseDefault.test( name ) ) {
-			// IE<8 needs the *property* name
+			// IE<8 needs the *by.epam.java_training.mihail_poliansky.final_project.property* name
 			elem.setAttribute( !getSetAttribute && jQuery.propFix[ name ] || name, name );
 
 		// Use defaultChecked and defaultSelected for oldIE
@@ -2511,7 +2511,7 @@ if ( !getSetInput || !getSetAttribute ) {
 			var ret = elem.getAttributeNode( name );
 			return jQuery.nodeName( elem, "input" ) ?
 
-				// Ignore the value *property* by using defaultValue
+				// Ignore the value *by.epam.java_training.mihail_poliansky.final_project.property* by using defaultValue
 				elem.defaultValue :
 
 				ret && ret.specified ? ret.value : undefined;
@@ -2594,7 +2594,7 @@ if ( !jQuery.support.hrefNormalized ) {
 		});
 	});
 
-	// href/src property should get the full normalized URL (#10299/#12915)
+	// href/src by.epam.java_training.mihail_poliansky.final_project.property should get the full normalized URL (#10299/#12915)
 	jQuery.each([ "href", "src" ], function( i, name ) {
 		jQuery.propHooks[ name ] = {
 			get: function( elem ) {
@@ -2608,7 +2608,7 @@ if ( !jQuery.support.style ) {
 	jQuery.attrHooks.style = {
 		get: function( elem ) {
 			// Return undefined in the case of empty string
-			// Note: IE uppercases css property names, but if we were to .toLowerCase()
+			// Note: IE uppercases css by.epam.java_training.mihail_poliansky.final_project.property names, but if we were to .toLowerCase()
 			// .cssText, that would destroy case senstitivity in URL's, like in "background"
 			return elem.style.cssText || undefined;
 		},
@@ -2618,8 +2618,8 @@ if ( !jQuery.support.style ) {
 	};
 }
 
-// Safari mis-reports the default selected property of an option
-// Accessing the parent's selectedIndex property fixes it
+// Safari mis-reports the default selected by.epam.java_training.mihail_poliansky.final_project.property of an option
+// Accessing the parent's selectedIndex by.epam.java_training.mihail_poliansky.final_project.property fixes it
 if ( !jQuery.support.optSelected ) {
 	jQuery.propHooks.selected = jQuery.extend( jQuery.propHooks.selected, {
 		get: function( elem ) {
@@ -2721,7 +2721,7 @@ jQuery.event = {
 					jQuery.event.dispatch.apply( eventHandle.elem, arguments ) :
 					undefined;
 			};
-			// Add elem as a property of the handle fn to prevent a memory leak with IE non-native events
+			// Add elem as a by.epam.java_training.mihail_poliansky.final_project.property of the handle fn to prevent a memory leak with IE non-native events
 			eventHandle.elem = elem;
 		}
 
@@ -3128,7 +3128,7 @@ jQuery.event = {
 		}
 
 		// Support: IE<9
-		// Fix target property (#1925)
+		// Fix target by.epam.java_training.mihail_poliansky.final_project.property (#1925)
 		if ( !event.target ) {
 			event.target = originalEvent.srcElement || document;
 		}
@@ -3282,7 +3282,7 @@ jQuery.removeEvent = document.removeEventListener ?
 		if ( elem.detachEvent ) {
 
 			// #8545, #7054, preventing memory leaks for custom events in IE6-8
-			// detachEvent needed property on element, by name of that event, to properly expose it to GC
+			// detachEvent needed by.epam.java_training.mihail_poliansky.final_project.property on element, by name of that event, to properly expose it to GC
 			if ( typeof elem[ name ] === "undefined" ) {
 				elem[ name ] = null;
 			}
@@ -3344,7 +3344,7 @@ jQuery.Event.prototype = {
 			e.preventDefault();
 
 		// Support: IE
-		// Otherwise set the returnValue property of the original event to false
+		// Otherwise set the returnValue by.epam.java_training.mihail_poliansky.final_project.property of the original event to false
 		} else {
 			e.returnValue = false;
 		}
@@ -3362,7 +3362,7 @@ jQuery.Event.prototype = {
 		}
 
 		// Support: IE
-		// Set the cancelBubble property of the original event to true
+		// Set the cancelBubble by.epam.java_training.mihail_poliansky.final_project.property of the original event to true
 		e.cancelBubble = true;
 	},
 	stopImmediatePropagation: function() {
@@ -3831,7 +3831,7 @@ function isNative( fn ) {
 /**
  * Create key-value caches of limited size
  * @returns {Function(string, Object)} Returns the Object data after storing it on itself with
- *	property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
+ *	by.epam.java_training.mihail_poliansky.final_project.property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
  *	deleting the oldest entry
  */
 function createCache() {
@@ -4886,7 +4886,7 @@ Expr = Sizzle.selectors = {
 		},
 
 		"selected": function( elem ) {
-			// Accessing this property makes selected-by-default
+			// Accessing this by.epam.java_training.mihail_poliansky.final_project.property makes selected-by-default
 			// options in Safari work properly
 			if ( elem.parentNode ) {
 				elem.parentNode.selectedIndex;
@@ -6353,7 +6353,7 @@ function getAll( context, tag ) {
 		found;
 }
 
-// Used in buildFragment, fixes the defaultChecked property
+// Used in buildFragment, fixes the defaultChecked by.epam.java_training.mihail_poliansky.final_project.property
 function fixDefaultChecked( elem ) {
 	if ( manipulation_rcheckableType.test( elem.type ) ) {
 		elem.defaultChecked = elem.checked;
@@ -6617,7 +6617,7 @@ var curCSS, getStyles, iframe,
 	cssExpand = [ "Top", "Right", "Bottom", "Left" ],
 	cssPrefixes = [ "Webkit", "O", "Moz", "ms" ];
 
-// return a css property mapped to a potentially vendor prefixed property
+// return a css by.epam.java_training.mihail_poliansky.final_project.property mapped to a potentially vendor prefixed by.epam.java_training.mihail_poliansky.final_project.property
 function vendorPropName( style, name ) {
 
 	// shortcut for names that are not vendor prefixed
@@ -6735,8 +6735,8 @@ jQuery.fn.extend({
 });
 
 jQuery.extend({
-	// Add in style property hooks for overriding the default
-	// behavior of getting and setting a style property
+	// Add in style by.epam.java_training.mihail_poliansky.final_project.property hooks for overriding the default
+	// behavior of getting and setting a style by.epam.java_training.mihail_poliansky.final_project.property
 	cssHooks: {
 		opacity: {
 			get: function( elem, computed ) {
@@ -6765,11 +6765,11 @@ jQuery.extend({
 	// Add in properties whose names you wish to fix before
 	// setting or getting the value
 	cssProps: {
-		// normalize float css property
+		// normalize float css by.epam.java_training.mihail_poliansky.final_project.property
 		"float": jQuery.support.cssFloat ? "cssFloat" : "styleFloat"
 	},
 
-	// Get and set the style property on a DOM Node
+	// Get and set the style by.epam.java_training.mihail_poliansky.final_project.property on a DOM Node
 	style: function( elem, name, value, extra ) {
 		// Don't set styles on text and comment nodes
 		if ( !elem || elem.nodeType === 3 || elem.nodeType === 8 || !elem.style ) {
@@ -6809,7 +6809,7 @@ jQuery.extend({
 			}
 
 			// Fixes #8908, it can be done more correctly by specifing setters in cssHooks,
-			// but it would mean to define eight (for every problematic property) identical functions
+			// but it would mean to define eight (for every problematic by.epam.java_training.mihail_poliansky.final_project.property) identical functions
 			if ( !jQuery.support.clearCloneStyle && value === "" && name.indexOf("background") === 0 ) {
 				style[ name ] = "inherit";
 			}
@@ -7034,7 +7034,7 @@ function augmentWidthOrHeight( elem, name, extra, isBorderBox, styles ) {
 
 function getWidthOrHeight( elem, name, extra ) {
 
-	// Start with offset property, which is equivalent to the border-box value
+	// Start with offset by.epam.java_training.mihail_poliansky.final_project.property, which is equivalent to the border-box value
 	var valueIsBorderBox = true,
 		val = name === "width" ? elem.offsetWidth : elem.offsetHeight,
 		styles = getStyles( elem ),
@@ -8613,7 +8613,7 @@ var fxNow, timerId,
 				// We need to compute starting value
 				if ( unit !== "px" && start ) {
 					// Iteratively approximate from a nonzero starting point
-					// Prefer the current property, because this process will be trivial if it uses the same units
+					// Prefer the current by.epam.java_training.mihail_poliansky.final_project.property, because this process will be trivial if it uses the same units
 					// Fallback to end or a simple constant
 					start = jQuery.css( tween.elem, prop, true ) || end || 1;
 
@@ -8656,7 +8656,7 @@ function createTweens( animation, props ) {
 		for ( ; index < length; index++ ) {
 			if ( collection[ index ].call( animation, prop, value ) ) {
 
-				// we're done with this property
+				// we're done with this by.epam.java_training.mihail_poliansky.final_project.property
 				return;
 			}
 		}
@@ -8877,7 +8877,7 @@ function defaultPrefilter( elem, props, opts ) {
 		// overflowY are set to the same value
 		opts.overflow = [ style.overflow, style.overflowX, style.overflowY ];
 
-		// Set display property to inline-block for height/width
+		// Set display by.epam.java_training.mihail_poliansky.final_project.property to inline-block for height/width
 		// animations on inline elements that are having width/height animated
 		if ( jQuery.css( elem, "display" ) === "inline" &&
 				jQuery.css( elem, "float" ) === "none" ) {
@@ -9075,7 +9075,7 @@ jQuery.fn.extend({
 		var empty = jQuery.isEmptyObject( prop ),
 			optall = jQuery.speed( speed, easing, callback ),
 			doAnimation = function() {
-				// Operate on a copy of prop so per-property easing won't be lost
+				// Operate on a copy of prop so per-by.epam.java_training.mihail_poliansky.final_project.property easing won't be lost
 				var anim = Animation( this, jQuery.extend( {}, prop ), optall );
 				doAnimation.finish = function() {
 					anim.stop( true );

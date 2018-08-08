@@ -30,6 +30,7 @@ public class AddTmpiCommand implements ActionCommand {
             );
             ServiceFactory.getTimeManagerService().addPlan(planItem);
         } catch (ServiceException e) {
+            logger.info(e);
             repayException(resp, e);
         }
     }

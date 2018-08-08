@@ -1,6 +1,10 @@
 //main events
 //------------------------------------------------------------------------------------------------------------
 
+const ERROR_MESSAGE = "Sorry, we've got error";
+const SUCCESS_MESSAGE = "success!";
+const USER_EXISTS_MESSAGE = "user already exists";
+const VALIDATION_ERROR_MESSAGE = "Validation error!";
 
 function onSubmitRegisterForm() {
     var mail, password, nickname;
@@ -15,9 +19,9 @@ function onSubmitRegisterForm() {
         success: function (data, text) {
             if (data.isExists) {
                 registerUser(mail, nickname, password);
-                alert("success!");
+                alert(SUCCESS_MESSAGE);
             } else {
-                alert("user already exists");
+                alert(USER_EXISTS_MESSAGE);
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -79,23 +83,27 @@ function checkPassword(password) {
 function addTMPI() {
     let timeBegin = $("#timeBegin").val();
     let timeEnd = $("#timeEnd").val();
+    timeBegin = $("#timeBegin").val("");
+    timeEnd = $("#timeEnd").val("");
     let tmiId = $("#tmiSelect").find(':selected').attr('name');
     let tmiName = $("#tmiSelect").val();
-    let date = $("#date").val();
+    let date = $("#date").text();
     if (validateTMPI(timeBegin, timeEnd)) {
+        let query = "timeBegin=" + timeBegin + "&timeEnd=" + timeEnd + "&tmi_id=" + tmiId + "&date=" + date + "&action=add_tmpi" + JSON_ACTION;
+        alert(query);
         $.ajax({
             url: "/controller",
-            data: "timeBegin=" + timeBegin + "&timeEnd=" + timeEnd + "&tmiId=" + tmiId + "&date=" + date + "&action=add_tmpi" + JSON_ACTION,
+            data: query,
             type: "POST",
             success: function () {
                 $("#tm-ul").append("<li>" + tmiName + ": " + timeBegin + " - " + timeEnd + "</li>");
             },
             error: function () {
-                alert("Sorry, we've got error");
+                alert(ERROR_MESSAGE);
             }
         })
     } else {
-        alert("Validation error!");
+        alert(VALIDATION_ERROR_MESSAGE);
     }
 }
 
@@ -103,21 +111,22 @@ function addCFPI() {
     let cost = $("#cost").val();
     let cfiId = $("#cfiSelect").find(':selected').attr('name');
     let cfiName = $("#cfiSelect").val();
+    timeBegin = $("#cost").val("");
     let date = $("#date").val();
     if (validateTMPI(timeBegin, timeEnd)) {
         $.ajax({
             url: "/controller",
-            data: "cost=" + cost + "&cfiId=" + cfiId + "&date=" + date + "&action=add_cfpi" + JSON_ACTION,
+            data: "cost=" + cost + "&cfi_id=" + cfiId + "&date=" + date + "&action=add_cfpi" + JSON_ACTION,
             type: "POST",
             success: function () {
                 $("#cf-ul").append("<li>" + cfiName + ": " + cost + "</li>");
             },
             error: function () {
-                alert("Sorry, we've got error");
+                alert(ERROR_MESSAGE);
             }
         });
     } else {
-        alert("Validation error!");
+        alert(VALIDATION_ERROR_MESSAGE);
     }
 }
 
@@ -137,11 +146,11 @@ function changePassword() {
                 alert(answ.message);
             },
             error: function () {
-                alert("Sorry, we've got error");
+                //alert(ERROR_MESSAGE);
             }
         });
     } else {
-        alert("validation error!");
+        alert(VALIDATION_ERROR_MESSAGE);
     }
 }
 
@@ -167,7 +176,24 @@ function validateNickname(nickname) {
 }
 
 function validateTMPI(timeEnd, timeBegin) {
-    return timeBegin !== "" && timeEnd !== "";
+    try {
+        let timeEndParts = timeEnd.split("-");
+        let timeBeginParts = timeBegin.split("-");
+        return timeBegin !== "" &&
+            timeEnd !== "" &&
+            +timeEndParts[0] >= 0 &&
+            +timeEndParts[0] <= 23 &&
+            +timeEndParts[1] >= 0 &&
+            +timeEndParts[1] <= 59
+            +timeBeginParts[0] >= 0 &&
+            +timeBeginParts[0] <= 23 &&
+            +timeBeginParts[1] >= 0 &&
+            +timeBeginParts[1] <= 59 &&
+            +timeBeginParts[0] <= +timeEndParts[0] &&
+            +timeBeginParts[1] <= +timeEndParts[1];
+    } catch (e) {
+        return false;
+    }
 }
 
 //AJAX
@@ -197,11 +223,9 @@ function isUserExistsWith(mail) {
         success: function (data, text) {
             hui = text;
             isExists = data.isExists;
-            alert("isUserExists " + data.isExists);
         },
         async: false
     });
-    alert("isUserE " + isExists);
     return isExists;
 }
 
@@ -218,16 +242,30 @@ function addTmi() {
                 $("#tmi-ul").append("<li class='tmi " + ans.id + "'>" + tmiName + "<button onclick='deleteCfi(" + ans.id + ")'>delete</button></li>");
             },
             error: function () {
-                alert("Sorry, we've got error");
+                //alert(ERROR_MESSAGE);
             }
         });
     } else {
-        alert("Validation error!");
+        alert(VALIDATION_ERROR_MESSAGE);
     }
 }
 
 function validateCFIName(cfiName) {
-    return true;
+    return cfiName !== null && cfiName !== "";
+}
+
+function changeLang() {
+
+    let lang = $("#langSelect").find(':selected').attr('name');
+    $.ajax({
+        url: "controller",
+        dataType: "html",
+        data: "action=change_language&lang=" + lang,
+        method: "POST",
+        success: function (ans) {
+            $("body").html(ans);
+        }
+    })
 }
 
 function addCfi() {
@@ -243,11 +281,11 @@ function addCfi() {
                 $("#cfi-ul").append("<li class='cfi " + ans.id + "'>" + cfiName + "<button onclick='deleteCfi(" + ans.id + ")'>delete</button></li>");
             },
             error: function () {
-                alert("Sorry, we've got error");
+                //alert(ERROR_MESSAGE);
             }
         });
     } else {
-        alert("Validation error!");
+        alert(VALIDATION_ERROR_MESSAGE);
     }
 }
 
@@ -260,7 +298,7 @@ function deleteTmi(tmi) {
             $("li.tmi" + "." + tmi).remove();
         },
         error: function () {
-            alert("Sorry, we've got error");
+            alert(ERROR_MESSAGE);
         }
     });
 }
@@ -274,7 +312,7 @@ function deleteCfi(cfi) {
             $("li.cfi" + "." + cfi).remove();
         },
         error: function () {
-            alert("Sorry, we've got error");
+            alert(ERROR_MESSAGE);
         }
     });
 }

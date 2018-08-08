@@ -95,13 +95,14 @@ public class UsersDaoImpl extends BaseDaoImpl implements UsersDao {
     public User find(int userId) throws ConnectionPoolException, DBException {
         Connection connection = initConnection();
         ResultSet set;
-        User user;
+        User user = null;
         try {
             PreparedStatement statement = connection.prepareStatement(SELECT_USER);
             statement.setInt(1, userId);
             set = statement.executeQuery();
-            set.next();
-            user = new User(Role.getRole(set.getInt(ROLE_ID)), set.getString(USR_NICKNAME), set.getInt(USR_ID));
+            if (set.next()) {
+                user = new User(Role.getRole(set.getInt(ROLE_ID)), set.getString(USR_NICKNAME), set.getInt(USR_ID));
+            }
         } catch (SQLException e) {
             throw new DBException(e);
         } finally {

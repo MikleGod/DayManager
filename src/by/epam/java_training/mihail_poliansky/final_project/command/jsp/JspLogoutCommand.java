@@ -12,6 +12,6 @@ public class JspLogoutCommand extends PageOpener {
     public void execute(HttpServletRequest req, HttpServletResponse resp) {
         req.getSession().invalidate();
         LogManager.getLogger(JspLogoutCommand.class).info("forwarded");
-        dispatch("registration-login.jsp", req, resp);
+        dispatch("/registration-login.jsp", req, resp);
     }
 }

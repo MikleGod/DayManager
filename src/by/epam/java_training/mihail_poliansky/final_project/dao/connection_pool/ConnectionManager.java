@@ -5,7 +5,12 @@ import by.epam.java_training.mihail_poliansky.final_project.dao.DBException;
 public class ConnectionManager {
 
     private static final int MAX_CONS = 5;
-    private static final String URL = "jdbc:mysql://localhost:3306/DayManagerDB?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private static final String URL = "jdbc:mysql://localhost:3306/DayManagerDB?" +
+            "useUnicode=true&" +
+            "useJDBCCompliantTimezoneShift=true&" +
+            "useLegacyDatetimeCode=false&" +
+            "serverTimezone=UTC&" +
+            "characterEncoding=utf8";
     private static final String DRIVER = "com.mysql.jdbc.Driver";
     private static final String USER = "newuser";
     private static final String PASSWORD = "root";

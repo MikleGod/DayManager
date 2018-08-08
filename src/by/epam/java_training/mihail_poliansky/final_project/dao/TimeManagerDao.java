@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface TimeManagerDao {
     List<TimeManagerPlanItem> findAll(Date date, User user) throws ConnectionPoolException, DBException;
+    List<TimeManagerPlanItem> findAll(User user) throws ConnectionPoolException, DBException;
     void update(TimeManagerPlanItem item) throws ConnectionPoolException, DBException;
     void delete(TimeManagerPlanItem item) throws ConnectionPoolException, DBException;
     void insert(List<TimeManagerPlanItem> items) throws ConnectionPoolException, DBException;

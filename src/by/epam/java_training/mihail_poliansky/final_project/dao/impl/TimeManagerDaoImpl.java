@@ -35,11 +35,25 @@ public class TimeManagerDaoImpl extends BaseDaoImpl implements TimeManagerDao {
         return parseSet(set, date, user);
     }
 
-    @Test
-    public void testFindAll() throws DBException, ConnectionPoolException {
-        List<TimeManagerPlanItem> items = new TimeManagerDaoImpl().findAll(Date.valueOf(LocalDate.now()), new User(Role.USER, "HUI", 1));
-        Assert.assertEquals(items.size(), 1);
+    @Override
+    public List<TimeManagerPlanItem> findAll(User user) throws ConnectionPoolException, DBException {
+        Connection connection = initConnection();
+        ResultSet set;
+        PreparedStatement statement;
+        try {
+            statement = connection.prepareStatement(SELECT_TIME_MANAGE);
+            statement.setInt(1, user.getId());
+            set = statement.executeQuery();
+        } catch (SQLException e) {
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+        return parseSet(set, user);
     }
+
+
+
 
     @Override
     public void update(TimeManagerPlanItem item) throws ConnectionPoolException, DBException {
@@ -99,7 +113,7 @@ public class TimeManagerDaoImpl extends BaseDaoImpl implements TimeManagerDao {
     private void insert(TimeManagerPlanItem item, Connection connection) throws DBException {
         try {
             PreparedStatement statement = connection.prepareStatement(INSERT_TIME_MANAGE);
-            statement.setDate(2, item.getDate());
+            statement.setDate(2, item.getDate(), Calendar.getInstance());
             statement.setInt(1, item.getUser().getId());
             statement.setInt(5, item.getTimeManagerItem().getId());
             statement.setString(3, item.getTimeBegin());
@@ -122,6 +136,27 @@ public class TimeManagerDaoImpl extends BaseDaoImpl implements TimeManagerDao {
                                 , user
                                 , date
                                 , 0
+                        )
+                );
+            }
+        } catch (SQLException e) {
+            throw new DBException(e);
+        }
+        return items;
+    }
+
+    private List<TimeManagerPlanItem> parseSet(ResultSet set, User user) throws DBException {
+        List<TimeManagerPlanItem> items = new ArrayList<>();
+        try {
+
+            while (set.next()) {
+                items.add(
+                        new TimeManagerPlanItem(new TimeManagerItem(set.getString(ITEM_NAME), set.getInt(TMI_ID))
+                                , set.getString("time_begin")
+                                , set.getString("time_end")
+                                , user
+                                , set.getDate("date")
+                                , set.getInt("tm_id")
                         )
                 );
             }

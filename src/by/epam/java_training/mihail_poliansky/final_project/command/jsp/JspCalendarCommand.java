@@ -8,6 +8,7 @@ import by.epam.java_training.mihail_poliansky.final_project.service.exception.Da
 import by.epam.java_training.mihail_poliansky.final_project.service.exception.ServiceException;
 import by.epam.java_training.mihail_poliansky.final_project.service.impl.ServiceFactory;
 import by.epam.java_training.mihail_poliansky.final_project.util.DateParser;
+import by.epam.java_training.mihail_poliansky.final_project.util.ResourceManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -36,6 +37,9 @@ public class JspCalendarCommand extends PageOpener {
         CashFlowService cashFlowService = ServiceFactory.getCashFlowService();
 
         try {
+
+            ((ResourceManager)req.getSession().getAttribute("lang")).addLocalizationAttributes(req);
+
             List<TimeManagerItem> timeManagerItems = timeManagerService.getTMItems((User) req.getSession().getAttribute("user"));
             List<CashFlowItem> cashFlowItems = cashFlowService.getCFItems((User) req.getSession().getAttribute("user"));
 
@@ -46,7 +50,7 @@ public class JspCalendarCommand extends PageOpener {
             req.setAttribute("timeManagerPlanItems", planItemsList);
             req.setAttribute("cashFlowItems", cashFlowItems);
             req.setAttribute("cashFlowPlanItems", planItemsCash);
-            req.setAttribute("date", dateString);
+            req.setAttribute("date", date.toString());
 
         } catch (DayManagerException e) {
             logger.info(e.toString());
@@ -58,7 +62,5 @@ public class JspCalendarCommand extends PageOpener {
 
     private void repayException(DayManagerException e, HttpServletRequest req, HttpServletResponse resp) {
         req.setAttribute("validation", e.getMessage());
-
-        dispatch("/jsp/calendar.jsp", req, resp);
     }
 }

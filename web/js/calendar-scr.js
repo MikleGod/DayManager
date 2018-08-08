@@ -13,7 +13,6 @@ function ajaxCalendar(year, month, day) {
         strDay = "" + day;
     }
     let date = "" + year + '-' + strMonth + '-' + strDay;
-    alert(date);
 
     $.ajax({
         url: "/controller",

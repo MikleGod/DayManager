@@ -109,13 +109,14 @@ public class UsersPrivatesDaoImpl extends BaseDaoImpl implements UserPrivatesDao
     public UserPrivates find(int userId) throws ConnectionPoolException, DBException {
         Connection connection = initConnection();
         ResultSet set;
-        UserPrivates privates;
+        UserPrivates privates = null;
         try {
             PreparedStatement statement = connection.prepareStatement(SELECT_USER_PRIVATES);
             statement.setInt(1, userId);
             set = statement.executeQuery();
-            set.next();
-            privates = new UserPrivates(set.getString(MAIL), set.getInt(PASSWORD), userId);
+            if (set.next()) {
+                privates = new UserPrivates(set.getString(MAIL), set.getInt(PASSWORD), userId);
+            }
         } catch (SQLException e) {
             throw new DBException(e);
         } finally {

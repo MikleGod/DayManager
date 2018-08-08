@@ -13,12 +13,12 @@ import by.epam.java_training.mihail_poliansky.final_project.service.exception.Us
 import by.epam.java_training.mihail_poliansky.final_project.service.AuthService;
 import by.epam.java_training.mihail_poliansky.final_project.service.validator.AuthValidator;
 import by.epam.java_training.mihail_poliansky.final_project.service.validator.ServiceValidationException;
-import by.epam.java_training.mihail_poliansky.final_project.service.validator.impl.ValidatorFactory;
+import by.epam.java_training.mihail_poliansky.final_project.service.validator.impl.ServiceValidatorFactory;
 
 public class AuthServiceImpl implements AuthService {
 
 
-    private AuthValidator authValidator = ValidatorFactory.getAuthValidator();
+    private AuthValidator authValidator = ServiceValidatorFactory.getAuthValidator();
 
     @Override
     public User login(UserPrivates userPrivates) throws NoSuchUserException, ServiceException {

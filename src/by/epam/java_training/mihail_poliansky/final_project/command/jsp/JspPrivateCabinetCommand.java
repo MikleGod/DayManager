@@ -5,11 +5,13 @@ import by.epam.java_training.mihail_poliansky.final_project.entity.TimeManagerIt
 import by.epam.java_training.mihail_poliansky.final_project.entity.User;
 import by.epam.java_training.mihail_poliansky.final_project.service.exception.ServiceException;
 import by.epam.java_training.mihail_poliansky.final_project.service.impl.ServiceFactory;
+import by.epam.java_training.mihail_poliansky.final_project.util.ResourceManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Enumeration;
 import java.util.List;
 
 public class JspPrivateCabinetCommand extends PageOpener {
@@ -24,6 +26,8 @@ public class JspPrivateCabinetCommand extends PageOpener {
 
         try {
 
+            ((ResourceManager)req.getSession().getAttribute("lang")).addLocalizationAttributes(req);
+
             List<TimeManagerItem> timeManagerItems = ServiceFactory.getTimeManagerService().getTMItems(user);
             List<CashFlowItem> cashFlowItems = ServiceFactory.getCashFlowService().getCFItems(user);
 
@@ -37,4 +41,6 @@ public class JspPrivateCabinetCommand extends PageOpener {
         }
 
     }
+
+
 }

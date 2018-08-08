@@ -7,7 +7,8 @@ public enum JspCommandEnum {
     CALENDAR(new JspCalendarCommand()),
     LOGOUT(new JspLogoutCommand()),
     STATISTICS(new JspStatisticsCommand()),
-    PRIVATE(new JspPrivateCabinetCommand());
+    PRIVATE(new JspPrivateCabinetCommand()),
+    CHANGE_LANGUAGE(new JspChangeLanguageCommand());
 
     private ActionCommand command;
 

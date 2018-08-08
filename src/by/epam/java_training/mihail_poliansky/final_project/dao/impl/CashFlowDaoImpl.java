@@ -56,7 +56,7 @@ public class CashFlowDaoImpl extends BaseDaoImpl implements CashFlowDao {
         try {
             PreparedStatement statement = connection.prepareStatement(DELETE_CASH_FLOW);
             statement.setInt(3, item.getId());
-            statement.setDate(2, item.getDate());
+            statement.setDate(2, item.getDate(), Calendar.getInstance());
             statement.setInt(1, item.getUser().getId());
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -92,7 +92,7 @@ public class CashFlowDaoImpl extends BaseDaoImpl implements CashFlowDao {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(INSERT_CASH_FLOW);
-            statement.setDate(2, item.getDate());
+            statement.setDate(2, item.getDate(), Calendar.getInstance());
             statement.setInt(1, item.getUser().getId());
             statement.setInt(4, item.getCashFlowItem().getId());
             statement.setDouble(3, item.getCost());

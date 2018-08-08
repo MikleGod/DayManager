@@ -13,7 +13,7 @@ import by.epam.java_training.mihail_poliansky.final_project.service.CashFlowServ
 import by.epam.java_training.mihail_poliansky.final_project.service.exception.ServiceException;
 import by.epam.java_training.mihail_poliansky.final_project.service.validator.CashFlowValidator;
 import by.epam.java_training.mihail_poliansky.final_project.service.validator.ServiceValidationException;
-import by.epam.java_training.mihail_poliansky.final_project.service.validator.impl.ValidatorFactory;
+import by.epam.java_training.mihail_poliansky.final_project.service.validator.impl.ServiceValidatorFactory;
 
 import java.sql.Date;
 import java.util.Arrays;
@@ -23,11 +23,11 @@ import static by.epam.java_training.mihail_poliansky.final_project.service.impl.
 
 public class CashFlowServiceImpl implements CashFlowService {
 
-    private CashFlowValidator cashFlowValidator = ValidatorFactory.getCashFlowValidator();
+    private CashFlowValidator cashFlowValidator = ServiceValidatorFactory.getCashFlowValidator();
 
     @Override
     public CashFlowItem changeCFItem(User user, CashFlowItem item) throws ServiceException {
-        if (cashFlowValidator.validate(item) && cashFlowValidator.validate(user)) {
+        if (cashFlowValidator.validate(item) && cashFlowValidator.validate(user)) {//TODO DTO
             try {
                 CashFlowItemsDao itemsDao = DaoFactory.getCashFlowItemsDao();
                 CashFlowItem item1;
@@ -54,6 +54,13 @@ public class CashFlowServiceImpl implements CashFlowService {
             try {
 
                 CashFlowItemsDao itemsDao = DaoFactory.getCashFlowItemsDao();
+                List<CashFlowItem> items = itemsDao.findAll(user);
+                for (CashFlowItem cashFlowItem : items) {
+                    if (cashFlowItem.getName().equals(item.getName())){
+                        throw new ServiceException("Already has this item");
+                    }
+                }
+
                 CashFlowItem item1;
                 try {
                     item1 = itemsDao.find(item);
