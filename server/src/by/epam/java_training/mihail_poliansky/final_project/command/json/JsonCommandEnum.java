@@ -4,7 +4,7 @@ import by.epam.java_training.mihail_poliansky.final_project.command.ActionComman
 
 public enum JsonCommandEnum {
     REGISTRATION(new JsonRegistrationCommand()),
-    LOGIN(new JsonRegistrationCommand()),
+    LOGIN(new JsonLoginCommand()),
     CHECK_MAIL(new CheckMailCommand()),
     ADD_TMPI(new AddTmpiCommand()),
     ADD_TMI(new AddTmiCommand()),

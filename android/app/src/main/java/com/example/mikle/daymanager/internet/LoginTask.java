@@ -1,0 +1,42 @@
+package com.example.mikle.daymanager.internet;
+
+import com.example.mikle.daymanager.entity.dto.LoginDto;
+import com.example.mikle.daymanager.presenter.action.ReadyAction;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+public class LoginTask extends RequestTask {
+
+    private static final String PASSWORD = "password";
+    private static final String MAIL = "mail";
+    public static final String ACTION = "action";
+    public static final String LOGIN = "login";
+
+    public LoginTask(ReadyAction context) {
+        super(context);
+    }
+
+    @Override
+    protected String createUrl(Object urls) {
+        LoginDto dto = (LoginDto) urls;
+        return dto.getHost();
+    }
+
+    @Override
+    protected List<NameValuePair> createParams(Object urls) {
+        LoginDto dto = (LoginDto) urls;
+
+
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair(MAIL, dto.getMail()));
+        params.add(new BasicNameValuePair(PASSWORD, dto.getPassword()));
+        params.add(new BasicNameValuePair(ACTION, LOGIN));
+        return params;
+    }
+}
