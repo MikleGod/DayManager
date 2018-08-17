@@ -74,32 +74,35 @@ public class LoginPresenter implements AuthActivityPresenter {
 
         @Override
         public void onError() {
-            //onComplete();
             changeButtonEnabled();
             Toast.makeText(activity, "Smth wrong, sorry", Toast.LENGTH_SHORT).show();
         }
 
+        private void onError(JSONObject answer) {
+            changeButtonEnabled();
+            try {
+                Toast.makeText(activity, answer.getString("message"), Toast.LENGTH_SHORT).show();
+            } catch (JSONException e) {
+                onError();
+            }
+        }
+
         @Override
         public void onSuccess(JSONObject answer) {
-            //onComplete();
             try {
                 Session session = ((DayManagerApplication) activity.getApplication()).getSession();
                 session.setUser(new User(
-                        Role.valueOf(answer.getString("role")),
-                        answer.getString("nickname"),
-                        answer.getInt("userId"))
+                        Role.valueOf(answer.getString("role").toUpperCase()),
+                        answer.getString("usr_nickname"),
+                        answer.getInt("usr_id"))
                 );
                 session.setCashFlowItems(parseCashFlowItems(answer));
                 session.setTimeManagerItems(parseTimeManagerItems(answer));
                 activity.startActivity(new Intent(activity, MainActivity.class));
             } catch (JSONException e) {
-                Log.e("Login Presenter: ", e.getMessage(), e);
-                onError();
+                Log.e("Login Presenter: ", answer.toString(), e);
+                onError(answer);
             }
-        }
-
-        private void onComplete() {
-            changeButtonEnabled();
         }
 
         private List<TimeManagerItem> parseTimeManagerItems(JSONObject answer) throws JSONException {

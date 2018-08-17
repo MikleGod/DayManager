@@ -15,8 +15,8 @@ public class LoginTask extends RequestTask {
 
     private static final String PASSWORD = "password";
     private static final String MAIL = "mail";
-    public static final String ACTION = "action";
-    public static final String LOGIN = "login";
+    private static final String ACTION = "action";
+    private static final String LOGIN = "login";
 
     public LoginTask(ReadyAction context) {
         super(context);

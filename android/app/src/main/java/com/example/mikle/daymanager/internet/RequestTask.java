@@ -36,7 +36,7 @@ public abstract class RequestTask extends AsyncTask<Object, Void, JSONObject> {
         List<NameValuePair> params = createParams(urls);
         params.add(new BasicNameValuePair("json", "true"));
 
-        JSONObject json = jParser.makeHttpRequest("http://"+createUrl(urls), params);
+        JSONObject json = jParser.makeHttpRequest("http://"+createUrl(urls)+"/controller", params);
 
         return json;
     }
