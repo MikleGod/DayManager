@@ -1,6 +1,7 @@
 package by.epam.java_training.mihail_poliansky.final_project.dao.connection_pool;
 
 import by.epam.java_training.mihail_poliansky.final_project.dao.DBException;
+import org.junit.Test;
 
 public class ConnectionManager {
 
@@ -12,8 +13,19 @@ public class ConnectionManager {
             "serverTimezone=UTC&" +
             "characterEncoding=utf8";
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String USER = "newuser";
-    private static final String PASSWORD = "root";
+    private static String tempUser;
+    private static String tempPassword;
+    static {
+        if (System.getProperty("os.name").equals("Mac OS X")){
+            tempUser = "root";
+            tempPassword = "";
+        } else {
+            tempUser = "newuser";
+            tempPassword = "root";
+        }
+    }
+    private static final String USER = tempUser;
+    private static final String PASSWORD = tempPassword;
 
     private static ConnectionPool pool;
 
