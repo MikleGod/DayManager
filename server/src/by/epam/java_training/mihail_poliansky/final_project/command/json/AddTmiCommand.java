@@ -42,7 +42,7 @@ AddTmiCommand implements ActionCommand {
                 logger.info("execute 5");
                 TimeManagerItem item = ServiceFactory.getTimeManagerService().addTMItem((User) req.getSession().getAttribute(USER), new TimeManagerItem(req.getParameter(ParametersNames.TMI_NAME), 0));
                 logger.info("execute6");
-                resp.getWriter().write(new String(JSON.toJSONString(item).getBytes(), "utf-8"));
+                resp.getWriter().write(JSON.toJSONString(item));
                 logger.info("execute 7");
             } else {
                 resp.getWriter().write(JSON.toJSONString(new Message("Error!")));
