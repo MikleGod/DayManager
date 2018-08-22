@@ -1,6 +1,5 @@
 package com.example.mikle.daymanager.presenter.adapter;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -11,20 +10,20 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.mikle.daymanager.R;
-import com.example.mikle.daymanager.entity.TimeManagerPlanItem;
+import com.example.mikle.daymanager.entity.CashFlowPlanItem;
+import com.example.mikle.daymanager.view.MainActivity;
 
 import java.util.List;
 
-public class TmpiListViewAdapter extends ArrayAdapter<TimeManagerPlanItem>{
+public class CfpiListViewAdapter extends ArrayAdapter<CashFlowPlanItem>{
+
+    private final List<CashFlowPlanItem> items;
 
 
-    private final List<TimeManagerPlanItem> items;
-
-    public TmpiListViewAdapter(@NonNull Context context, int resource, @NonNull List<TimeManagerPlanItem> items) {
-        super(context, resource, items);
-        this.items = items;
+    public CfpiListViewAdapter(MainActivity activity, int item_cfpi_list, List<CashFlowPlanItem> cfpItems) {
+        super(activity, item_cfpi_list, cfpItems);
+        this.items = cfpItems;
     }
-
 
     @Override
     public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -39,15 +38,13 @@ public class TmpiListViewAdapter extends ArrayAdapter<TimeManagerPlanItem>{
 
     private View getCustomView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = ((AppCompatActivity) getContext()).getLayoutInflater();
-        View row = inflater.inflate(R.layout.item_tmpi_list, parent, false);
+        View row = inflater.inflate(R.layout.item_cfpi_list, parent, false);
 
-        TextView timeBeginTV = row.findViewById(R.id.timeBeginTextView);
-        TextView timeEndTV = row.findViewById(R.id.timeEndTextView);
-        TextView tmiTV = row.findViewById(R.id.tmiTextView);
+        TextView cfiNameTV = row.findViewById(R.id.cfiName);
+        TextView costTv = row.findViewById(R.id.costTV);
 
-        timeBeginTV.setText(items.get(position).getTimeBegin());
-        timeEndTV.setText(items.get(position).getTimeEnd());
-        tmiTV.setText(items.get(position).getTimeManagerItem().getName());
+        cfiNameTV.setText(items.get(position).getCashFlowItem().getName());
+        costTv.setText(items.get(position).getCost()+"");
 
         return row;
     }

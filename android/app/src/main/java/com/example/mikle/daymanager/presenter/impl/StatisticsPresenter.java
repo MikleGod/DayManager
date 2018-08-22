@@ -5,4 +5,9 @@ public class StatisticsPresenter extends BaseMainActivityPresenter {
     public void onInit() {
 
     }
+
+    @Override
+    protected void onDateSet(int year, int month, int day) {
+
+    }
 }

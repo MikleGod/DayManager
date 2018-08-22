@@ -1,5 +1,6 @@
 package com.example.mikle.daymanager.view;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -37,6 +38,16 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
+
+    @Override
+    public Dialog onCreateDialog(int id) {
+        if (id == MainActivityPresenter.DATE_DIALOG_ID) {
+            return presenter.getDateDialog();
+        } else {
+            return super.onCreateDialog(id);
+        }
+    }
+
 
     private void changeFragment(int fragmentId, MainActivityPresenter presenter){
         this.presenter = presenter;

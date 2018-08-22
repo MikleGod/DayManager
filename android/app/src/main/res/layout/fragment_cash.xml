@@ -1,64 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:layout_margin="10dp"
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp">
+
     <LinearLayout
         android:id="@+id/dateLinearLayout"
-        android:padding="10dp"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
         <TextView
             android:id="@+id/dateLabel"
-            android:textAlignment="center"
-            android:text="date: "
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:text="date: "
+            android:textAlignment="center" />
+
         <TextView
             android:id="@+id/date"
-            android:text="11.28.1998"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:text="11.28.1998" />
     </LinearLayout>
 
     <ListView
-        android:layout_below="@+id/dateLinearLayout"
         android:id="@+id/cashListView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dateLinearLayout" />
+
     <LinearLayout
-        android:padding="10dp"
         android:id="@+id/addCfpiLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/cashListView"
         android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_weight="2"
-            android:id="@+id/costTextView"
-            android:text="Cost: "
+        android:padding="10dp">
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_weight="2">
+
+            <EditText
+                android:id="@+id/costTextView"
+                android:hint="Cost:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </android.support.design.widget.TextInputLayout>
+
         <Spinner
-            android:layout_weight="1"
             android:id="@+id/cfiSpinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
         <Button
-            android:text="add"
-            android:layout_weight="2"
             android:id="@+id/addCfpiButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="add" />
     </LinearLayout>
+
     <Button
         android:id="@+id/addCfiButton"
-        android:text="add Item"
-        android:layout_below="@id/addCfpiLinearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addCfpiLinearLayout"
+        android:text="add Item" />
 
 </RelativeLayout>

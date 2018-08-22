@@ -3,6 +3,7 @@ package com.example.mikle.daymanager.presenter.impl;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
+import android.text.Editable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mikle.daymanager.DayManagerApplication;
@@ -75,6 +77,7 @@ public class DayPlanPresenter extends BaseMainActivityPresenter {
     }
 
     private void updateTmpiList(String date) {
+        dateTV.setText(date);
         this.date = date;
         Session session = ((DayManagerApplication) activity.getApplication()).getSession();
         new GetTmpiTask(
@@ -140,14 +143,19 @@ public class DayPlanPresenter extends BaseMainActivityPresenter {
                         .setPositiveButton("add", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                addTmiButton.setEnabled(false);
-                                DayManagerApplication application = (DayManagerApplication) activity.getApplication();
                                 EditText editText = eTView.findViewById(R.id.addItemEditText);
-                                new AddTmiTask(
-                                        new AddTmiReadyAction(),
-                                        application.getSession().getHost(),
-                                        application.getSession().getContext()
-                                ).execute("" + editText.getText());
+                                Editable text = editText.getText();
+                                if (!text.toString().isEmpty()) {
+                                    addTmiButton.setEnabled(false);
+                                    DayManagerApplication application = (DayManagerApplication) activity.getApplication();
+                                    new AddTmiTask(
+                                            new AddTmiReadyAction(),
+                                            application.getSession().getHost(),
+                                            application.getSession().getContext()
+                                    ).execute("" + text);
+                                } else {
+                                    Toast.makeText(activity, "U must write smth!", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         })
                         .setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
@@ -161,6 +169,9 @@ public class DayPlanPresenter extends BaseMainActivityPresenter {
     }
 
     private void initViews() {
+        dateTV = activity.findViewById(R.id.date);
+        dateTV.setOnClickListener(getDateTVListener());
+
         listView = activity.findViewById(R.id.planListView);
 
         addTmiButton = activity.findViewById(R.id.addTmiButton);
@@ -169,6 +180,11 @@ public class DayPlanPresenter extends BaseMainActivityPresenter {
         timeEndEditTest = activity.findViewById(R.id.timeEndTextView);
         timeBeginEditTest = activity.findViewById(R.id.timeBeginTextView);
         addTmpiButton = activity.findViewById(R.id.addTmpiButton);
+    }
+
+    @Override
+    protected void onDateSet(int year, int month, int day) {
+        updateTmpiList(year + "-" + (month+1) + "-" + day);
     }
 
     private class AddTmiReadyAction implements ReadyAction {
@@ -212,6 +228,7 @@ public class DayPlanPresenter extends BaseMainActivityPresenter {
         public void onSuccess(JSONObject answer) {
             try {
                 JSONArray array = answer.getJSONArray("tmpItems");
+                List<TimeManagerPlanItem> tmpItems = new ArrayList<>();
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject jsonTmpi = array.getJSONObject(i);
                     JSONObject jsonTmi = jsonTmpi.getJSONObject("timeManagerItem");
@@ -227,6 +244,8 @@ public class DayPlanPresenter extends BaseMainActivityPresenter {
                     );
                     tmpItems.add(tmpi);
                 }
+                DayPlanPresenter.this.tmpItems.clear();
+                DayPlanPresenter.this.tmpItems.addAll(tmpItems);
                 listViewAdapter.notifyDataSetChanged();
             } catch (JSONException e) {
                 onError(answer);
