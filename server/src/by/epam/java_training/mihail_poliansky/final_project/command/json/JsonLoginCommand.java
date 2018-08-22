@@ -1,12 +1,8 @@
 package by.epam.java_training.mihail_poliansky.final_project.command.json;
 
 import by.epam.java_training.mihail_poliansky.final_project.command.LoginCommand;
-import by.epam.java_training.mihail_poliansky.final_project.entity.CashFlowItem;
 import by.epam.java_training.mihail_poliansky.final_project.entity.Role;
-import by.epam.java_training.mihail_poliansky.final_project.entity.TimeManagerItem;
 import by.epam.java_training.mihail_poliansky.final_project.entity.User;
-import by.epam.java_training.mihail_poliansky.final_project.dao.connection_pool.ConnectionPoolException;
-import by.epam.java_training.mihail_poliansky.final_project.dao.DBException;
 import by.epam.java_training.mihail_poliansky.final_project.service.exception.NoSuchUserException;
 import by.epam.java_training.mihail_poliansky.final_project.service.exception.ServiceException;
 import by.epam.java_training.mihail_poliansky.final_project.service.impl.ServiceFactory;
@@ -14,15 +10,10 @@ import by.epam.java_training.mihail_poliansky.final_project.util.ExceptionString
 import com.alibaba.fastjson.JSON;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.spi.AbstractLogger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class JsonLoginCommand extends LoginCommand {
 

@@ -8,6 +8,7 @@ import by.epam.java_training.mihail_poliansky.final_project.entity.User;
 import by.epam.java_training.mihail_poliansky.final_project.service.exception.ServiceException;
 import by.epam.java_training.mihail_poliansky.final_project.service.impl.ServiceFactory;
 import by.epam.java_training.mihail_poliansky.final_project.util.ResourceManager;
+import com.alibaba.fastjson.JSON;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,9 +29,10 @@ public class AddCfiCommand implements ActionCommand {
         try {
             if (((List<ActivityEnum>) req.getSession().getAttribute(AttributeNames.ACTIVITIES)).contains(ActivityEnum.ADD_CFI)) {
 
-                ServiceFactory.getCashFlowService().addCFItem((User) req.getSession().getAttribute(AttributeNames.USER), new CashFlowItem(req.getParameter("cfi_name"), 0));
+                CashFlowItem item = ServiceFactory.getCashFlowService().addCFItem((User) req.getSession().getAttribute(AttributeNames.USER), new CashFlowItem(req.getParameter("cfi_name"), 0));
+                resp.getWriter().write(JSON.toJSONString(item));
             } else {
-                resp.getWriter().write(JsonCreator.createJsonMessage(resourceManager.getErrorString(AttributeNames.ACTIVITIES_ERROR)));
+                resp.getWriter().write(JSON.toJSONString(new Message(resourceManager.getErrorString(AttributeNames.ACTIVITIES_ERROR))));
             }
         } catch (ServiceException|IOException e) {
             repayException(resp, e);

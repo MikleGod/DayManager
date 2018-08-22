@@ -14,7 +14,8 @@ public enum JsonCommandEnum {
     ADD_CFPI(new AddCfpiCommand()),
     CHANGE_PRIVATES(new ChangePrivatesCommand()),
     ADD_ACTIVITY(new AddActivityCommand()),
-    DELETE_ACTIVITY(new DeleteActivityCommand());
+    DELETE_ACTIVITY(new DeleteActivityCommand()),
+    GET_TMPI(new GetTmpiCommand());
 
     private ActionCommand command;
 

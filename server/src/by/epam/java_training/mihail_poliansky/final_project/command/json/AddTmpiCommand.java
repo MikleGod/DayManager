@@ -8,13 +8,16 @@ import by.epam.java_training.mihail_poliansky.final_project.service.impl.Service
 import by.epam.java_training.mihail_poliansky.final_project.util.DateParser;
 import by.epam.java_training.mihail_poliansky.final_project.util.ExceptionStringCreator;
 import by.epam.java_training.mihail_poliansky.final_project.util.ResourceManager;
+import com.alibaba.fastjson.JSON;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static by.epam.java_training.mihail_poliansky.final_project.constant.AttributeNames.*;
 import static by.epam.java_training.mihail_poliansky.final_project.constant.ParametersNames.DATE;
@@ -36,15 +39,18 @@ public class AddTmpiCommand implements ActionCommand {
 
                 TimeManagerPlanItem planItem = new TimeManagerPlanItem(
                         new TimeManagerItem("", Integer.parseInt(req.getParameter(ParametersNames.TMI_ID))),
-                        req.getParameter(ParametersNames.TIME_BEGIN),
-                        req.getParameter(ParametersNames.TIME_END),
+                        req.getParameter("time_begin"),
+                        req.getParameter("time_end"),
                         (User) req.getSession().getAttribute(USER),
                         DateParser.parseDate(req.getParameter(DATE)),
                         0
                 );
-                ServiceFactory.getTimeManagerService().addPlan(planItem);
+                planItem = ServiceFactory.getTimeManagerService().addPlan(planItem);
+                Map<String, TimeManagerPlanItem> map = new HashMap<>();
+                map.put("tmpi", planItem);
+                resp.getWriter().write(JSON.toJSONString(map));
             } else {
-                resp.getWriter().write(JsonCreator.createJsonMessage(resourceManager.getErrorString(ACTIVITIES_ERROR)));
+                resp.getWriter().write(JSON.toJSONString(resourceManager.getErrorString(ACTIVITIES_ERROR)));
             }
         } catch (ServiceException|IOException e) {
             logger.info(ExceptionStringCreator.createString(e));
@@ -54,7 +60,7 @@ public class AddTmpiCommand implements ActionCommand {
 
     private void repayException(HttpServletResponse resp, Exception e) {
         try {
-            resp.getWriter().write(JsonCreator.createJsonMessage(e.getMessage()));
+            resp.getWriter().write(JSON.toJSONString(new Message(e.getMessage())));
         } catch (IOException e1) {
             logger.info(e1.toString());
         }

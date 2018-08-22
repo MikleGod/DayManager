@@ -21,7 +21,7 @@ import static by.epam.java_training.mihail_poliansky.final_project.constant.Attr
 import static by.epam.java_training.mihail_poliansky.final_project.constant.ParametersNames.MAIL;
 
 public abstract class LoginCommand extends PageOpener {
-    private Logger logger = LogManager.getLogger(LoginCommand.class);
+    Logger logger = LogManager.getLogger(LoginCommand.class);
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) {
