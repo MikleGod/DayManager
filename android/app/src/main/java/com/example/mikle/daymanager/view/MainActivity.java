@@ -40,9 +40,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void changeFragment(int fragmentId, MainActivityPresenter presenter){
         this.presenter = presenter;
+        presenter.setActivity(this);
         View view = getLayoutInflater().inflate(fragmentId, null);
         container.removeAllViews();
         container.addView(view);
+        presenter.onInit();
     }
 
     @Override
@@ -55,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        changeFragment(R.layout.fragment_plan, PresenterFactory.getDayPlanPresenter());
     }
 
 }

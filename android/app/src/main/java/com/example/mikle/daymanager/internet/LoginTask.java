@@ -5,6 +5,7 @@ import com.example.mikle.daymanager.presenter.action.ReadyAction;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HttpContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +19,8 @@ public class LoginTask extends RequestTask {
     private static final String ACTION = "action";
     private static final String LOGIN = "login";
 
-    public LoginTask(ReadyAction context) {
-        super(context);
+    public LoginTask(ReadyAction context, HttpContext httpContext) {
+        super(context, httpContext);
     }
 
     @Override

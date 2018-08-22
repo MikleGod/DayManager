@@ -11,6 +11,9 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -19,6 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.util.List;
 
 public class RequestMaker {
@@ -26,10 +30,11 @@ public class RequestMaker {
     static InputStream is = null;
     static JSONObject jObj = null;
     static String json = "";
+    HttpContext httpContext;
 
     // конструктор
-    public RequestMaker() {
-
+    public RequestMaker(HttpContext httpContext) {
+        this.httpContext = httpContext;
     }
 
     /**
@@ -40,15 +45,14 @@ public class RequestMaker {
      */
     public JSONObject makeHttpRequest(String url, List<NameValuePair> params) {
 
-        // создаём HTTP запрос
         try {
 
 
                 DefaultHttpClient httpClient = new DefaultHttpClient();
                 HttpPost httpPost = new HttpPost(url);
-                httpPost.setEntity(new UrlEncodedFormEntity(params));
+                        httpPost.setEntity(new UrlEncodedFormEntity(params));
 
-                HttpResponse httpResponse = httpClient.execute(httpPost);
+                HttpResponse httpResponse = httpClient.execute(httpPost, httpContext);
                 HttpEntity httpEntity = httpResponse.getEntity();
                 is = httpEntity.getContent();
 
@@ -65,7 +69,7 @@ public class RequestMaker {
         }
 
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"), 8);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is, "utf-8"), 8);
             StringBuilder sb = new StringBuilder();
             String line = null;
             while ((line = reader.readLine()) != null) {

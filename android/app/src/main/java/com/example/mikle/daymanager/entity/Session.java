@@ -1,5 +1,7 @@
 package com.example.mikle.daymanager.entity;
 
+import org.apache.http.protocol.HttpContext;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -8,6 +10,8 @@ public class Session {
     private User user;
     private List<CashFlowItem> cashFlowItems = new ArrayList<>();
     private List<TimeManagerItem> timeManagerItems = new ArrayList<>();
+    private String host;
+    private HttpContext context;
 
     public User getUser() {
         return user;
@@ -40,5 +44,21 @@ public class Session {
                 ", cashFlowItems=" + cashFlowItems +
                 ", timeManagerItems=" + timeManagerItems +
                 '}';
+    }
+
+    public void setHost(String host) {
+        this.host = host;
+    }
+
+    public String getHost() {
+        return host;
+    }
+
+    public void setContext(HttpContext context) {
+        this.context = context;
+    }
+
+    public HttpContext getContext() {
+        return context;
     }
 }

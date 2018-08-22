@@ -19,6 +19,10 @@ import com.example.mikle.daymanager.presenter.action.ReadyAction;
 import com.example.mikle.daymanager.view.AuthActivity;
 import com.example.mikle.daymanager.view.MainActivity;
 
+import org.apache.http.client.protocol.ClientContext;
+import org.apache.http.impl.client.BasicCookieStore;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,6 +33,8 @@ import java.util.List;
 public class LoginPresenter implements AuthActivityPresenter {
 
     private AuthActivity activity;
+    private LoginDto data;
+    HttpContext context;
 
     public void setActivity(AuthActivity activity) {
         this.activity = activity;
@@ -39,11 +45,13 @@ public class LoginPresenter implements AuthActivityPresenter {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginDto data = activity.getETData();
+                data = activity.getETData();
                 String vMessage;
                 if ((vMessage = validateData(data)) == null) {
                     changeButtonEnabled();
-                    new LoginTask(new LoginAction()).execute(data);
+                    context = new BasicHttpContext();
+                    context.setAttribute(ClientContext.COOKIE_STORE, new BasicCookieStore());
+                    new LoginTask(new LoginAction(), context).execute(data);
                 } else {
                     Toast.makeText(activity, vMessage, Toast.LENGTH_SHORT).show();
                 }
@@ -98,6 +106,8 @@ public class LoginPresenter implements AuthActivityPresenter {
                 );
                 session.setCashFlowItems(parseCashFlowItems(answer));
                 session.setTimeManagerItems(parseTimeManagerItems(answer));
+                session.setContext(context);
+                session.setHost(data.getHost());
                 activity.startActivity(new Intent(activity, MainActivity.class));
             } catch (JSONException e) {
                 Log.e("Login Presenter: ", answer.toString(), e);

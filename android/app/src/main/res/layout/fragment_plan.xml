@@ -1,70 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:layout_margin="10dp"
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp">
+
     <LinearLayout
         android:id="@+id/dateLinearLayout"
-        android:padding="10dp"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
         <TextView
             android:id="@+id/dateLabel"
-            android:textAlignment="center"
-            android:text="date: "
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:text="date: "
+            android:textAlignment="center" />
+
         <TextView
             android:id="@+id/date"
-            android:text="11.28.1998"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:text="11.28.1998" />
     </LinearLayout>
 
-    <ListView
-        android:layout_below="@+id/dateLinearLayout"
+   <ListView
         android:id="@+id/planListView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dateLinearLayout" />
+
     <LinearLayout
-        android:padding="10dp"
         android:id="@+id/addTmpiLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/planListView"
         android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
+        android:padding="10dp">
+
+        <android.support.design.widget.TextInputLayout
             android:layout_weight="2"
-            android:id="@+id/timeBeginTextView"
-            android:text="Time begin: "
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/timeBeginTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:hint="Time begin: " />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
             android:layout_weight="2"
-            android:id="@+id/timeEndTextView"
-            android:text="Time End: "
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/timeEndTextView"
+                android:inputType="time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Time End: " />
+
+        </android.support.design.widget.TextInputLayout>
+
         <Spinner
-            android:layout_weight="2"
             android:id="@+id/tmiSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2" />
+
         <Button
-            android:text="add"
-            android:layout_weight="2"
             android:id="@+id/addTmpiButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="add" />
     </LinearLayout>
+
     <Button
         android:id="@+id/addTmiButton"
-        android:text="add Item"
-        android:layout_below="@id/addTmpiLinearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addTmpiLinearLayout"
+        android:text="add Item" />
 
 </RelativeLayout>

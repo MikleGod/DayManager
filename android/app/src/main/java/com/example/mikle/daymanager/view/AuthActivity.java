@@ -42,6 +42,19 @@ public class AuthActivity extends AppCompatActivity {
 
         loginB.setOnClickListener(presenter.getLoginBListener());
         registrationB.setOnClickListener(presenter.getRegistrationBListener());
+
+        tempMethod();
+    }
+
+    private void tempMethod() {
+
+        EditText mailET = findViewById(R.id.mailET);
+        EditText passwordET = findViewById(R.id.passwordET);
+        EditText hostET = findViewById(R.id.hostET);
+
+        mailET.setText("test1@gmail.com");
+        passwordET.setText("test1");
+        hostET.setText("192.168.100.2:8080");
     }
 
     public LoginDto getETData(){

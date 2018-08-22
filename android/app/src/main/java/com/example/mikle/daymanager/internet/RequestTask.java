@@ -6,16 +6,19 @@ import com.example.mikle.daymanager.presenter.action.ReadyAction;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HttpContext;
 import org.json.JSONObject;
 
 import java.util.List;
 
 public abstract class RequestTask extends AsyncTask<Object, Void, JSONObject> {
     ReadyAction context;
+    HttpContext httpContext;
 
-    public RequestTask(ReadyAction context) {
+    public RequestTask(ReadyAction context, HttpContext httpContext) {
         super();
         this.context = context;
+        this.httpContext = httpContext;
     }
 
     @Override
@@ -31,7 +34,7 @@ public abstract class RequestTask extends AsyncTask<Object, Void, JSONObject> {
 
     public  JSONObject loadJSON(Object urls) {
 
-        RequestMaker jParser = new RequestMaker();
+        RequestMaker jParser = new RequestMaker(httpContext);
 
         List<NameValuePair> params = createParams(urls);
         params.add(new BasicNameValuePair("json", "true"));
