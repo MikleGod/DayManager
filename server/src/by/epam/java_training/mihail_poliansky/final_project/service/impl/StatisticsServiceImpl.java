@@ -58,8 +58,8 @@ public class StatisticsServiceImpl implements StatisticsService {
     private String countSpentTime(List<TimeManagerPlanItem> planItems) {
         int hours = 0, minutes = 0;
         for (TimeManagerPlanItem planItem : planItems) {
-            String[] timeBegin = planItem.getTimeBegin().split("-");
-            String[] timeEnd = planItem.getTimeEnd().split("-");
+            String[] timeBegin = planItem.getTimeBegin().replace(":", "-").split("-");
+            String[] timeEnd = planItem.getTimeEnd().replace(":", "-").split("-");
             int timeBeginHours = Integer.parseInt(timeBegin[0]);
             int timeEndHours = Integer.parseInt(timeEnd[0]);
             int timeBeginMinutes = Integer.parseInt(timeBegin[1]);

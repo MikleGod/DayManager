@@ -48,9 +48,9 @@
 
             <EditText
                 android:id="@+id/costTextView"
-                android:hint="Cost:"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="Cost:" />
         </android.support.design.widget.TextInputLayout>
 
         <Spinner
@@ -58,20 +58,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/addCfpiButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="add" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/addCfpiButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addCfpiLinearLayout"
+        android:text="add" />
 
     <Button
         android:id="@+id/addCfiButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/addCfpiLinearLayout"
+        android:layout_below="@id/addCfpiButton"
         android:text="add Item" />
 
 </RelativeLayout>

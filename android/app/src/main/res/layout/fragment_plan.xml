@@ -27,7 +27,7 @@
             android:text="11.28.1998" />
     </LinearLayout>
 
-   <ListView
+    <ListView
         android:id="@+id/planListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,37 +42,46 @@
         android:padding="10dp">
 
         <android.support.design.widget.TextInputLayout
-            android:layout_weight="2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="2">
 
             <EditText
                 android:id="@+id/timeBeginTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="time"
-                android:hint="Time begin: " />
+                android:hint="Time begin: "
+                android:inputType="time" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:layout_weight="2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="2">
 
             <EditText
                 android:id="@+id/timeEndTextView"
-                android:inputType="time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Time End: " />
+                android:hint="Time End: "
+                android:inputType="time" />
 
         </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/addTmpi2LinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addTmpiLinearLayout"
+        android:orientation="horizontal"
+        android:padding="10dp">
 
         <Spinner
             android:id="@+id/tmiSpinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.2" />
+            android:layout_weight="1" />
 
         <Button
             android:id="@+id/addTmpiButton"
@@ -86,7 +95,7 @@
         android:id="@+id/addTmiButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/addTmpiLinearLayout"
+        android:layout_below="@id/addTmpi2LinearLayout"
         android:text="add Item" />
 
 </RelativeLayout>
